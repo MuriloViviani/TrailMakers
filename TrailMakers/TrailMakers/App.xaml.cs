@@ -13,7 +13,8 @@ namespace TrailMakers
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new TabbedMainPage());
         }
 
         protected override void OnStart()

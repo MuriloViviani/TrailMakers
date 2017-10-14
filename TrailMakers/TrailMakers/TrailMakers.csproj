@@ -38,10 +38,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entity\Location.cs" />
     <Compile Include="Entity\MenuItem.cs" />
+    <Compile Include="Interface\ILocate.cs" />
     <Compile Include="Interface\ISaveAndLoad.cs" />
     <Compile Include="UI\MainPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\MapPage.cs" />
+    <Compile Include="UI\News\NewsPage.cs" />
+    <Compile Include="UI\News\NewsPattern.cs" />
+    <Compile Include="UI\TabbedMainPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

@@ -6,10 +6,20 @@ namespace TrailMakers.UI
     {
         public MainPage()
         {
+            var btn = new Button()
+            {
+                Text = "map",
+            };
+            btn.Clicked += delegate 
+            {
+                Navigation.PushAsync(new MapPage());
+            };
+
             Content = new StackLayout
             {
                 Children = {
-                    new Label { Text = "Welcome to Xamarin Forms!" }
+                    new Label { Text = "TrailMakers" },
+                    btn
                 }
             };
         }

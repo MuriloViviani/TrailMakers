@@ -2,7 +2,10 @@
 using System.Threading.Tasks;
 using TrailMakers.Interface;
 using System.IO;
+using Xamarin.Forms;
+using TrailMakers.Droid.DependencyServices;
 
+[assembly: Dependency(typeof(ISaveAndLoad_Android))]
 namespace TrailMakers.Droid.DependencyServices
 {
     public class ISaveAndLoad_Android : ISaveAndLoad
