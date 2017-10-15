@@ -1,4 +1,4 @@
-﻿using TrailMakers.UI.News;
+﻿using TrailMakers.UI.Newsfeed;
 using Xamarin.Forms;
 
 namespace TrailMakers.UI

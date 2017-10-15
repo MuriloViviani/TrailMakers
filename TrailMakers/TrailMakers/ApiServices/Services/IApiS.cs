@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TrailMakers.Entity;
 
-namespace TrailMakers.Interface
+namespace TrailMakers.ApiServices.Services
 {
-    public interface ILocate
+    public interface IApiS
     {
-        Location GetLocation();
+        List<News> GetNewsAsync();
     }
 }

@@ -1,5 +1,5 @@
-﻿using TrailMakers.Custom;
-using TrailMakers.Interface;
+﻿using TrailMakers.Business.Interface;
+using TrailMakers.Custom;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -13,6 +13,7 @@ namespace TrailMakers.UI
 
         public MapPage()
         {
+            Title = "Mapa";
             customMap = new CustomMap
             {
                 IsShowingUser = true,

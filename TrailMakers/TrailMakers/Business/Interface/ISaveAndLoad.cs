@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrailMakers.Interface
+namespace TrailMakers.Business.Interface
 {
     public interface ISaveAndLoad
     {

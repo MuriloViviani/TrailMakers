@@ -2,9 +2,8 @@
 using Android.Locations;
 using System.Collections.Generic;
 using System.Linq;
+using TrailMakers.Business.Interface;
 using TrailMakers.Droid.DependencyServices;
-using TrailMakers.Entity;
-using TrailMakers.Interface;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(ILocate_Android))]
