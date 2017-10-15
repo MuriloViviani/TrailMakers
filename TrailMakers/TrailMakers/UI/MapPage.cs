@@ -1,4 +1,5 @@
-﻿using TrailMakers.Interface;
+﻿using TrailMakers.Custom;
+using TrailMakers.Interface;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -6,13 +7,13 @@ namespace TrailMakers.UI
 {
     public class MapPage : ContentPage
     {
-        Map map;
+        CustomMap customMap;
         Button btnShowLocation;
         private ILocate locator = DependencyService.Get<ILocate>();
 
         public MapPage()
         {
-            map = new Map
+            customMap = new CustomMap
             {
                 IsShowingUser = true,
                 HeightRequest = 100,
@@ -21,11 +22,18 @@ namespace TrailMakers.UI
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
 
+            customMap.RouteCoordinates.Add(new Position(-23.359233, -46.735372));
+            customMap.RouteCoordinates.Add(new Position(-23.358934, -46.735474));
+            customMap.RouteCoordinates.Add(new Position(-23.358448, -46.735365));
+            customMap.RouteCoordinates.Add(new Position(-23.358199, -46.735219));
+            customMap.RouteCoordinates.Add(new Position(-23.357896, -46.735614));
+            customMap.RouteCoordinates.Add(new Position(-23.357607, -46.736103));
+
             var place = locator.GetLocation();
             if(place == null)
-                map.MoveToRegion(MapSpan.FromCenterAndRadius (new Position(0, 0), Distance.FromKilometers(1)));
+                customMap.MoveToRegion(MapSpan.FromCenterAndRadius (new Position(0, 0), Distance.FromKilometers(1)));
             else
-                map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(place.Latitude, place.Longitude), Distance.FromKilometers(1)));
+                customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(place.Latitude, place.Longitude), Distance.FromKilometers(1)));
 
             btnShowLocation = new Button()
             {
@@ -42,7 +50,7 @@ namespace TrailMakers.UI
 
             // put the page together
             var stack = new StackLayout { Spacing = 0 };
-            stack.Children.Add(map);
+            stack.Children.Add(customMap);
             stack.Children.Add(btnShowLocation);
 
             Content = stack;

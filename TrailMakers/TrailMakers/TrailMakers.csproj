@@ -38,8 +38,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Custom\CustomMap.cs" />
+    <Compile Include="Custom\CustomPin.cs" />
+    <Compile Include="DataAndHelper\Data.cs" />
     <Compile Include="Entity\Location.cs" />
     <Compile Include="Entity\MenuItem.cs" />
+    <Compile Include="DataAndHelper\HelperItens.cs" />
     <Compile Include="Interface\ILocate.cs" />
     <Compile Include="Interface\ISaveAndLoad.cs" />
     <Compile Include="UI\MainPage.cs" />
