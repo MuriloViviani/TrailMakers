@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using TrailMakers.UI.HistoricFeed;
+using Xamarin.Forms;
 
 namespace TrailMakers.UI
 {
@@ -6,20 +7,23 @@ namespace TrailMakers.UI
     {
         public MainPage()
         {
-            var btn = new Button()
+            var btnMap = new Button()
             {
                 Text = "map",
             };
-            btn.Clicked += delegate 
+            btnMap.Clicked += delegate { Navigation.PushAsync(new MapPage()); };
+            var btnHistoric = new Button()
             {
-                Navigation.PushAsync(new MapPage());
+                Text = "Historic",
             };
+            btnHistoric.Clicked += delegate { Navigation.PushAsync(new HistoricPage()); };
 
             Content = new StackLayout
             {
                 Children = {
                     new Label { Text = "TrailMakers" },
-                    btn
+                    btnMap,
+                    btnHistoric
                 }
             };
         }

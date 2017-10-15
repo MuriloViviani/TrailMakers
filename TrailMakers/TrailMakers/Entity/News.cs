@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TrailMakers.Entity
 {
@@ -10,8 +6,8 @@ namespace TrailMakers.Entity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string LilText { get; set; }
-        public string BigText { get; set; }
+        public string IntroText { get; set; }
+        public string NewsText { get; set; }
         public DateTime Timestamp { get; set; }
         public string ImgWebPath { get; set; }
     }

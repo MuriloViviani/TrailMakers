@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TrailMakers.Entity
+﻿namespace TrailMakers.Entity
 {
     public class Location
     {
+        public Location() { }
+
         public Location(double latitude, double longitude)
         {
             this.Latitude = latitude;

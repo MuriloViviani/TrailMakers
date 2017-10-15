@@ -9,7 +9,7 @@ namespace TrailMakers.DataAndHelper
 {
     public class Data
     {
-        // TODO: Update the curiosities
+        // TODO: Update curiosities
         public static string[] curiosities = new string[] {
             "Jundiaí possui 401.896 habitantes. Sendo o 15º município mais populoso do estado e o sétimo maior fora da grande São Paulo",
             "O nome 'Jundiaí' é uma referência ao Rio Jundiaí, cujo nome vem da língua tupi e significa “Rio dos Jundiás”, um peixe característico da região",

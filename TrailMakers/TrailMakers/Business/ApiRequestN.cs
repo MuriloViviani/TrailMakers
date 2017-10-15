@@ -17,5 +17,10 @@ namespace TrailMakers.Business
         {
             return apiService.GetNewsAsync();
         }
+
+        public List<Historic> GetUserHistoricAsync()
+        {
+            return apiService.GetUserHistoricAsync(0);
+        }
     }
 }

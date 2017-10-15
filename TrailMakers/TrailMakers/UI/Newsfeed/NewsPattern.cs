@@ -23,7 +23,7 @@ namespace TrailMakers.UI.Newsfeed
                                     VerticalOptions = LayoutOptions.Center
                                 },
                                 new Label {
-                                    Text = news.LilText,
+                                    Text = news.IntroText,
                                     FontSize = Device.GetNamedSize(NamedSize.Default, typeof(Label)),
                                     HorizontalOptions = LayoutOptions.CenterAndExpand,
                                     VerticalOptions = LayoutOptions.Center
