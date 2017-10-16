@@ -9,6 +9,8 @@ namespace TrailMakers
 {
     public partial class App : Application
     {
+        public static Size ScreenSize { get; set; }
+
         public App()
         {
             InitializeComponent();

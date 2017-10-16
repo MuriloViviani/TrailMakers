@@ -14,6 +14,8 @@ namespace TrailMakers.Droid
 
             base.OnCreate(bundle);
 
+            App.ScreenSize = new Xamarin.Forms.Size(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density, Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
             global::Xamarin.FormsMaps.Init(this, bundle);
 

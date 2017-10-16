@@ -26,6 +26,20 @@ namespace TrailMakers.UI.Newsfeed
             };
             frameShare.GestureRecognizers.Add(shareTapRecognizer);
 
+            var lblReturn = new Label
+            {
+                Text = "Voltar",
+                TextColor = Color.White,
+                HorizontalOptions = LayoutOptions.StartAndExpand,
+                VerticalOptions = LayoutOptions.Center
+            };
+            var returnTap = new TapGestureRecognizer();
+            returnTap.Tapped += delegate 
+            {
+                Navigation.PopModalAsync();
+            };
+            lblReturn.GestureRecognizers.Add(returnTap);
+
             Content = new StackLayout()
             {
                 Padding = new Thickness(0, 0, 0, 0),
@@ -34,11 +48,14 @@ namespace TrailMakers.UI.Newsfeed
                 {
                     new StackLayout ()
                     {
-                        // TODO: Change to a fraction of the Screen Height
-                        HeightRequest = 50,
+                        HeightRequest = App.ScreenSize.Height / 12,
                         BackgroundColor = Color.Black,
                         Orientation = StackOrientation.Horizontal,
-                        Children = { /* TODO: Put some more Options, return buttom for example */ }
+                        Padding = new Thickness(5,5,5,5),
+                        Children =
+                        {
+                            lblReturn
+                        }
                     },
                     new StackLayout()
                     {

@@ -29,7 +29,6 @@ namespace TrailMakers.UI.HistoricFeed
 
             lvHistoric.ItemSelected += (sender, e) =>
             {
-                // TODO: Set to the nedded Object
                 var selectedHistory = (Historic)e.SelectedItem;
                 if (selectedHistory == null)
                     return;
