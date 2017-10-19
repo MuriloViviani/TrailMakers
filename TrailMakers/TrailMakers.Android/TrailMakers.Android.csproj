@@ -112,6 +112,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomItens\CustomAndroidCellTrail.cs" />
+    <Compile Include="CustomRenderers\CustomCellTrailRenderer.cs" />
     <Compile Include="CustomRenderers\CustomMapRenderer.cs" />
     <Compile Include="DependencyServices\ILocate_Android.cs" />
     <Compile Include="DependencyServices\ISaveAndLoad_Android.cs" />
@@ -123,6 +125,9 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\layout\CustomCellTrail_layout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />

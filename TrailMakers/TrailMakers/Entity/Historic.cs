@@ -8,7 +8,7 @@ namespace TrailMakers.Entity
         public string Name { get; set; }
         public string Date { get; set; }
         public string TimeSpent { get; set; }
-        public double Distance { get; set; }
+        public string Distance { get; set; }
         public List<Location> TrailPath { get; set; }
     }
 }

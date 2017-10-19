@@ -45,7 +45,7 @@ Vestibulum dapibus, velit ac maximus tempus, tellus sem mollis eros, scelerisque
                     Id = 0,
                     Name = "Trilha dos palmares",
                     Date = DateTime.Now.ToString("dd/MM/yyyy"),
-                    Distance = 5.5d,
+                    Distance = "5.5",
                     TimeSpent = "5h2m",
                     TrailPath = new List<Location>()
                     {
@@ -80,7 +80,7 @@ Vestibulum dapibus, velit ac maximus tempus, tellus sem mollis eros, scelerisque
                     Id = 1,
                     Name = "Trilha dos desesperados",
                     Date = DateTime.Now.AddDays(-2).ToString("dd/MM/yyyy"),
-                    Distance = 1.2d,
+                    Distance = "1.2",
                     TimeSpent = "1h50m",
                     TrailPath = new List<Location>()
                     {
@@ -115,7 +115,7 @@ Vestibulum dapibus, velit ac maximus tempus, tellus sem mollis eros, scelerisque
                     Id = 2,
                     Name = "Calçadão",
                     Date = DateTime.Now.AddDays(-3).ToString("dd/MM/yyyy"),
-                    Distance = 6.2d,
+                    Distance = "6.2",
                     TimeSpent = "2h20m",
                     TrailPath = new List<Location>()
                     {
@@ -150,7 +150,7 @@ Vestibulum dapibus, velit ac maximus tempus, tellus sem mollis eros, scelerisque
                     Id = 3,
                     Name = "Trilha das uvas",
                     Date = DateTime.Now.AddDays(-6).ToString("dd/MM/yyyy"),
-                    Distance = 11.2d,
+                    Distance = "11.2",
                     TimeSpent = "10h23m",
                     TrailPath = new List<Location>()
                     {

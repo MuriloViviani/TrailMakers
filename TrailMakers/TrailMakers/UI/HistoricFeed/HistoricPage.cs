@@ -1,4 +1,5 @@
 ﻿using TrailMakers.Business;
+using TrailMakers.Custom;
 using TrailMakers.Entity;
 using Xamarin.Forms;
 
@@ -17,9 +18,10 @@ namespace TrailMakers.UI.HistoricFeed
             {
                 ItemTemplate = new DataTemplate(() =>
                 {
-                    var dtLvOpcoes = new TextCell();
-                    dtLvOpcoes.SetBinding(TextCell.TextProperty, "Name");
-                    dtLvOpcoes.SetBinding(TextCell.DetailProperty, "Date");
+                    var dtLvOpcoes = new CustomCellTrail();
+                    dtLvOpcoes.SetBinding(CustomCellTrail.NameProperty, "Name");
+                    dtLvOpcoes.SetBinding(CustomCellTrail.DistanceProperty, "Distance");
+                    dtLvOpcoes.SetBinding(CustomCellTrail.TimeProperty, "TimeSpent");
 
                     return dtLvOpcoes;
                 }),

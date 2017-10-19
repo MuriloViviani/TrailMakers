@@ -1,4 +1,6 @@
-﻿using TrailMakers.Custom;
+﻿using System;
+using System.Text;
+using TrailMakers.Custom;
 using TrailMakers.Entity;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -24,23 +26,68 @@ namespace TrailMakers.UI.HistoricFeed
             var lblName = new Label
             {
                 Text = historic.Name,
-                TextColor = Color.FromHex("#EE635D"),
+                TextColor = Color.White,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
                 FontAttributes = FontAttributes.Bold,
-                HorizontalOptions = LayoutOptions.Start,
                 HorizontalTextAlignment = TextAlignment.Start
             };
 
+            var lblInfo = new Label()
+            {
+                TextColor = Color.White,
+                FontSize = Device.GetNamedSize(NamedSize.Default, typeof(Label)),
+                HorizontalTextAlignment = TextAlignment.Start
+            };
+
+            StringBuilder sb = new StringBuilder();
+            if (!String.IsNullOrEmpty(historic.Date))
+            {
+                sb.Append("Ultima vez vizitada\n\t");
+                sb.Append(historic.Date);
+                sb.Append("\n");
+            }
+            if (!String.IsNullOrEmpty(historic.Distance))
+            {
+                sb.Append("Distancia da ultima corrida\n\t");
+                sb.Append(historic.Distance);
+                sb.Append("\n");
+            }
+            if (!String.IsNullOrEmpty(historic.TimeSpent))
+            {
+                sb.Append("Tempo decorrido\n\t");
+                sb.Append(historic.TimeSpent);
+            }
+            lblInfo.Text = sb.ToString();
+
+            double mapLatitude = 0, mapLongitude = 0;
             foreach (var item in historic.TrailPath)
             {
+                mapLatitude += item.Latitude;
+                mapLongitude += item.Longitude;
                 customMap.RouteCoordinates.Add(new Position(item.Latitude, item.Longitude));
             }
+            mapLatitude = mapLatitude / historic.TrailPath.Count;
+            mapLongitude = mapLongitude / historic.TrailPath.Count;
+
+            customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(mapLatitude, mapLongitude), Distance.FromKilometers(2)));
 
             Content = new StackLayout
             {
+                Spacing = 0,
                 Children = {
                     customMap,
-                    lblName
+                    new StackLayout()
+                    {
+                        BackgroundColor = Color.FromHex("#2196F3"),
+                        Padding = new Thickness(5,5,5,5),
+                        Children = { lblName, lblInfo }
+                    },
+                    new StackLayout()
+                    {
+                        BackgroundColor = Color.White,
+                        VerticalOptions = LayoutOptions.CenterAndExpand,
+                        HorizontalOptions = LayoutOptions.CenterAndExpand
+                    }
                 }
             };
         }

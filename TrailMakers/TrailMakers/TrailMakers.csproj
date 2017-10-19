@@ -44,6 +44,7 @@
     <Compile Include="Business\Interface\IApiRequestN.cs" />
     <Compile Include="Custom\CustomMap.cs" />
     <Compile Include="Custom\CustomPin.cs" />
+    <Compile Include="Custom\CustomCellTrail.cs" />
     <Compile Include="DataAndHelper\Data.cs" />
     <Compile Include="Entity\Historic.cs" />
     <Compile Include="Entity\Location.cs" />
