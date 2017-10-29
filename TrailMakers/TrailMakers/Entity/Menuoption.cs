@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TrailMakers.Entity
 {
-    public class MenuItem
+    public class MenuOption
     {
+        public string Name { get; set; }
+        public string BkgColor { get; set; }
+        public string ImagePath { get; set; }
     }
 }

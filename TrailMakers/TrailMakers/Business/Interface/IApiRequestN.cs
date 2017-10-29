@@ -7,5 +7,6 @@ namespace TrailMakers.Business.Interface
     {
         List<News> GetNewsAsync();
         List<Historic> GetUserHistoricAsync();
+        User GetUserDataAsync(int userID);
     }
 }

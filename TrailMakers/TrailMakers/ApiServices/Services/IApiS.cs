@@ -7,5 +7,6 @@ namespace TrailMakers.ApiServices.Services
     {
         List<News> GetNewsAsync();
         List<Historic> GetUserHistoricAsync(int userId);
+        User GetUserDataAsync(int userID);
     }
 }

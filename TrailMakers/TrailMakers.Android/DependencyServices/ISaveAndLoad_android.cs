@@ -19,8 +19,15 @@ namespace TrailMakers.Droid.DependencyServices
         public async Task<string> LoadTextAsync(string filename)
         {
             var path = PathToFile(filename);
-            using (StreamReader sr = File.OpenText(path))
-                return await sr.ReadToEndAsync();
+            try
+            {
+                using (StreamReader sr = File.OpenText(path))
+                    return await sr.ReadToEndAsync();
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
         }
 
         public async Task SaveTextAsync(string fileName, string text)
@@ -39,6 +46,7 @@ namespace TrailMakers.Droid.DependencyServices
         /// <returns></returns>
         private string PathToFile(string filename)
         {
+            filename = filename + ".txt";
             var docsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             return System.IO.Path.Combine(docsPath, filename);
         }

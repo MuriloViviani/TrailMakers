@@ -36,6 +36,18 @@ Vestibulum dapibus, velit ac maximus tempus, tellus sem mollis eros, scelerisque
             };
         }
 
+        public User GetUserDataAsync(int userID)
+        {
+            return new User()
+            {
+                UserId = 1,
+                Name = "Murilo",
+                Password = "123456",
+                Username = "mviviani",
+                Age = 20
+            };
+        }
+
         public List<Historic> GetUserHistoricAsync(int userId)
         {
             return new List<Historic>()
