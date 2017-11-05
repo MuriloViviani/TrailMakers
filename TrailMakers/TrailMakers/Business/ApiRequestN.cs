@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TrailMakers.ApiServices;
 using TrailMakers.Business.Interface;
 using TrailMakers.Entity;
@@ -11,9 +12,9 @@ namespace TrailMakers.Business
         private ApiS apiService = new ApiS();
         private ISaveAndLoad fileService = DependencyService.Get<ISaveAndLoad>();
 
-        public List<News> GetNewsAsync()
+        public async Task<List<News>> GetNewsAsync()
         {
-            return apiService.GetNewsAsync();
+            return await apiService.GetNewsAsync();
         }
 
         public User GetUserDataAsync(int userID)

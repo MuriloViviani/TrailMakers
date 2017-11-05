@@ -7,14 +7,12 @@ namespace TrailMakers.UI
     {
         public TabbedMainPage()
         {
+            BackgroundColor = Color.White;
+
             NavigationPage.SetHasNavigationBar(this, false);
 
-            var menuPage = new MainPage();
-            //navigationPage.Icon = "";
-            menuPage.Title = "Menu";
-
-            var newsPage = new NewsPage();
-            newsPage.Title = "News";
+            var menuPage = new MainPage() { Title = "Menu" };
+            var newsPage = new NewsPage() { Title = "News" };
 
             Children.Add(menuPage);
             Children.Add(newsPage);

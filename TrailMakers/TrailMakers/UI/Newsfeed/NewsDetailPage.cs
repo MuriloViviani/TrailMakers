@@ -63,7 +63,7 @@ namespace TrailMakers.UI.Newsfeed
                         Spacing = 4,
                         Children =
                         {
-                            new Label ()
+                            /*new Label ()
                             {
                                 Text = news.Name,
                                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
@@ -82,7 +82,7 @@ namespace TrailMakers.UI.Newsfeed
                             {
                                 Text = news.NewsText,
                                 TextColor = Color.Gray
-                            },
+                            },*/
                             frameShare
                         }
                     }

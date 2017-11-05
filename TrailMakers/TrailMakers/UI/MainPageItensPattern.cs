@@ -13,8 +13,8 @@ namespace TrailMakers.UI
                 BackgroundColor = Color.FromHex(item.BkgColor),
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Center,
-                HeightRequest = 40,
-                WidthRequest = 40,
+                HeightRequest = 50,
+                WidthRequest = 50,
                 Content = new Image()
                 {
                     VerticalOptions = LayoutOptions.Center,

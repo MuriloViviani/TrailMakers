@@ -10,6 +10,9 @@ namespace TrailMakers.UI
     {
         public MainPage()
         {
+            //BackgroundColor = Color.White;
+            BackgroundImage = "mainBcg.png";
+
             var optionsList = new List<MainPageItensPattern>();
             // opções sendo criadas e adicionadas a lista
 

@@ -13,6 +13,8 @@ namespace TrailMakers.UI.UserPage
         private Label userName, userCompleteName;
         private Image userImage;
         private Entry txtUsercompleteName, txtUserName, txtAge, txtEmail;
+        private Editor txtUserDetail;
+        private Button btnSave, btnCancel;
 
         ISaveAndLoad fileServices = DependencyService.Get<ISaveAndLoad>();
         ApiRequestN apiServices;
@@ -78,7 +80,7 @@ namespace TrailMakers.UI.UserPage
             {
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Placeholder = "Qual seu nome?"
+                Placeholder = "Seu nome"
             };
             if (userAvailable)
                 txtUsercompleteName.Text = user.Name;
@@ -87,7 +89,7 @@ namespace TrailMakers.UI.UserPage
             {
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Placeholder = "Qual seu nome de usuário?"
+                Placeholder = "Seu nome de usuário"
             };
             if (userAvailable)
                 txtUserName.Text = user.Username;
@@ -107,10 +109,54 @@ namespace TrailMakers.UI.UserPage
             {
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Placeholder = "Qual seu email?"
+                Placeholder = "exemplo@exemplo.com"
             };
             if (userAvailable)
                 txtEmail.Text = user.Email;
+
+            txtUserDetail = new Editor()
+            {
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Text = "Hey! Sou um Tribeiro!"
+            };
+            if (userAvailable)
+                txtUserDetail.Text = user.UserDetail;
+
+            // Buttons
+            btnSave = new Button()
+            {
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Text = "Salvar",
+                BackgroundColor = Color.FromHex("#4CAF50")
+            };
+            btnSave.Clicked += async delegate 
+            {
+                var x = await DisplayAlert("Atenção", "Após feitas estas alterações seu perfil nunca mais será o mesmo\n\n Deseja continuar?", "Com certeza!", "Esta louco?");
+                if (x)
+                {
+                    await DisplayAlert("Sucesso!", "As alterações foram aplicadas com sucesso =)", "Yey!");
+                    await Navigation.PopModalAsync();
+                }
+            };
+
+            btnCancel = new Button()
+            {
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Text = "Cancelar",
+                BackgroundColor = Color.FromHex("#F44336")
+            };
+            btnCancel.Clicked += async delegate
+            {
+                var x = await DisplayAlert("Atenção", "Deseja mesmo cancelar as alterações?", "Com certeza!", "Esta louco?");
+                if (x)
+                {
+                    await Navigation.PopModalAsync();
+                }
+            };
+
             #endregion
 
             var mainStack = new StackLayout() // Main Stack
@@ -177,7 +223,14 @@ namespace TrailMakers.UI.UserPage
                                         {
                                             Text = "Seu Email"
                                         },
-                                        txtEmail
+                                        txtEmail,
+                                        new Label()
+                                        {
+                                            Text = "Fale um pouco mais sobre você!"
+                                        },
+                                        txtUserDetail,
+                                        btnSave,
+                                        btnCancel
                                     }
                                 }
                             }
