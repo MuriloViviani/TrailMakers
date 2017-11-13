@@ -6,10 +6,10 @@ using TrailMakers.Business.Interface;
 using TrailMakers.Droid.DependencyServices;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(ILocate_Android))]
+[assembly: Dependency(typeof(Locate_Android))]
 namespace TrailMakers.Droid.DependencyServices
 {
-    class ILocate_Android : ILocate
+    class Locate_Android : ILocate
     {
         public Entity.Location GetLocation()
         {

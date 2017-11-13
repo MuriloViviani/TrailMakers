@@ -3,10 +3,10 @@ using TrailMakers.Business.Interface;
 using TrailMakers.Droid.DependencyServices;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(IIntent_Android))]
+[assembly: Dependency(typeof(Intent_Android))]
 namespace TrailMakers.Droid.DependencyServices
 {
-    public class IIntent_Android : IIntent
+    public class Intent_Android : IIntent
     {
         public void Navigator(string link)
         {

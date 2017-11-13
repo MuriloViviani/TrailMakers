@@ -68,5 +68,17 @@ namespace TrailMakers.DataAndHelper
             Help,
             POI
         };
+
+        public static string MY_PROFILE_ICON = "http://simpleicon.com/wp-content/uploads/user1.png";
+        public static string NEW_TRAIL_ICON = "https://d30y9cdsu7xlg0.cloudfront.net/png/15900-200.png";
+        public static string ROUTE_HISTORIC_ICON = "https://fatecspgov-my.sharepoint.com/personal/murilo_viviani_fatec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=1c17697208fe748ffa54aec0263cd69fd&authkey=AYLU91cZEh-q2Nmum2KU9Ms&e=5a46ca05897b45db89fbdc100f0cf6e9";
+        public static string TRAIL_SEARCH_ICON = "https://fatecspgov-my.sharepoint.com/personal/murilo_viviani_fatec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=1e9498907109a44a3839cb2ee63889b18&authkey=AVzL4Y_9ef2uhViv01LBGZA&e=352b95beb8bc4f539c3ceeb435378072";
+        public static string BEGIN_MAP_ICON = "https://fatecspgov-my.sharepoint.com/personal/murilo_viviani_fatec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=101016afada9140e49ba1bf26b6fe9a55&authkey=AU0IsLvfH3r5onCccBmASFA&e=6881f21b1691492790bf0db0171845f5";
+        public static string END_MAP_ICON = "https://fatecspgov-my.sharepoint.com/personal/murilo_viviani_fatec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=1410d5b091541438c9181e482bcb99dae&authkey=AfVY27ajjWjGHMpwrb2Nzpk&e=e20e9b1abf664d8282f53674c6a2f603";
+        public static string DANGER_MAP_ICON = "https://fatecspgov-my.sharepoint.com/personal/murilo_viviani_fatec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=1537654879aad4086a5edb02756a1da01&authkey=AbPrYK5RakK3wZfToXMmEpk&e=2f0dcbab581a41a48306100973ced00d";
+        public static string HELP_REQUEST_MAP_ICON = "https://fatecspgov-my.sharepoint.com/personal/murilo_viviani_fatec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=1ef27a0c26d484f05b4c8bce442eac1c4&authkey=AQYxLCdWCYMamMCwApEi4JQ&e=9efe4eb4ffe7400d83c94f9326377dd2";
+        public static string PICTURE_POINT_MAP_ICON = "https://fatecspgov-my.sharepoint.com/personal/murilo_viviani_fatec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=1f37705f3751f4c2d955823e8d7421238&authkey=AWQlXpokmSjxdWiDV32C5yI&e=d51b2eb44f99421d9060ad45c804939a";
+        public static string REST_MAP_ICON = "https://fatecspgov-my.sharepoint.com/personal/murilo_viviani_fatec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=162f37ff14c744d068c9fdded78956c44&authkey=Ac84ObDq9-eaY6SkDObwrSQ&e=2bdc50356dae4e5695772f1afa9d3328";
+        public static string WATER_MAP_ICON = "https://fatecspgov-my.sharepoint.com/personal/murilo_viviani_fatec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=15a660d3ce56f412da169030e3fcb6d8a&authkey=AXq45h_9erFjm3NFI9a6yiI&e=5faeddec034847d28af109f824e0abec";
     }
 }

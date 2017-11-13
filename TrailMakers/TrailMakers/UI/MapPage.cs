@@ -1,4 +1,5 @@
-﻿using TrailMakers.Business.Interface;
+﻿using System.Collections.Generic;
+using TrailMakers.Business.Interface;
 using TrailMakers.Custom;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -22,6 +23,20 @@ namespace TrailMakers.UI
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
+
+            // Custom Pin
+            var pin = new CustomPin()
+            {
+                Type = PinType.Place,
+                Position = new Position(-23.359233, -46.735372),
+                Label = "Teste",
+                Address = "Teste",
+                Id = "Warning",
+                IconUrl = DataAndHelper.Data.DANGER_MAP_ICON
+            };
+            customMap.PinsCoordinates = new List<CustomPin> { pin };
+            customMap.Pins.Add(pin);
+
 
             customMap.RouteCoordinates.Add(new Position(-23.359233, -46.735372));
             customMap.RouteCoordinates.Add(new Position(-23.358934, -46.735474));

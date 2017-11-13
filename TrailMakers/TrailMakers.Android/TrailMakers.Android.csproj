@@ -116,9 +116,9 @@
     <Compile Include="CustomItens\CustomAndroidCellTrail.cs" />
     <Compile Include="CustomRenderers\CustomCellTrailRenderer.cs" />
     <Compile Include="CustomRenderers\CustomMapRenderer.cs" />
-    <Compile Include="DependencyServices\IIntent_Android.cs" />
-    <Compile Include="DependencyServices\ILocate_Android.cs" />
-    <Compile Include="DependencyServices\ISaveAndLoad_Android.cs" />
+    <Compile Include="DependencyServices\Intent_Android.cs" />
+    <Compile Include="DependencyServices\Locate_Android.cs" />
+    <Compile Include="DependencyServices\SaveAndLoad_Android.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\mainBcg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\location_pin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

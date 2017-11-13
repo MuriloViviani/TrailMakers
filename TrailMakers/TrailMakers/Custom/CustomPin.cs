@@ -2,11 +2,9 @@
 
 namespace TrailMakers.Custom
 {
-    public class CustomPin
+    public class CustomPin : Pin
     {
-        public Pin Pin { get; set; }
-        public string name { get; set; }
-        public int ID { get; set; }
-        public string info { get; set; }
+        public string Name { get; set; }
+        public string IconUrl { get; set; }
     }
 }

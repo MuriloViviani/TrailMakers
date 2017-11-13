@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TrailMakers.ApiServices;
 using TrailMakers.Business.Interface;
@@ -25,6 +26,16 @@ namespace TrailMakers.Business
         public List<Historic> GetUserHistoricAsync()
         {
             return apiService.GetUserHistoricAsync(0);
+        }
+
+        public Trail GetTrailByIdAsync(int ID)
+        {
+            return apiService.GetTrailByIDAsync(ID);
+        }
+
+        public List<Trail> SearchTrailsAsync(string username, string trailName)
+        {
+            return apiService.SearchTrailAsync(username, trailName);
         }
     }
 }

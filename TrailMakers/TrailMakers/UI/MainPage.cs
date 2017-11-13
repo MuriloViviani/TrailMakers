@@ -10,8 +10,8 @@ namespace TrailMakers.UI
     {
         public MainPage()
         {
-            //BackgroundColor = Color.White;
-            BackgroundImage = "mainBcg.png";
+            BackgroundColor = Color.White;
+            //BackgroundImage = "mainBcg.png";
 
             var optionsList = new List<MainPageItensPattern>();
             // opções sendo criadas e adicionadas a lista
@@ -21,8 +21,8 @@ namespace TrailMakers.UI
             var menuInfo = new MenuOption()
             {
                 Name = "Meu Perfil",
-                BkgColor = "#03A9F4",
-                ImagePath = "http://simpleicon.com/wp-content/uploads/user1.png"
+                BkgColor = "#3F51B5",
+                ImagePath = DataAndHelper.Data.MY_PROFILE_ICON
             };
             var itemAux = new MainPageItensPattern(menuInfo);
             var ClickListenerAux = new TapGestureRecognizer();
@@ -32,14 +32,14 @@ namespace TrailMakers.UI
             };
             itemAux.GestureRecognizers.Add(ClickListenerAux);
             optionsList.Add(itemAux);
-            
+
             //------------------------------------------------------------------
             // Nova Corrida
             menuInfo = new MenuOption()
             {
                 Name = "Nova Corrida",
-                BkgColor = "#8BC34A",
-                ImagePath = "http://simpleicon.com/wp-content/uploads/user1.png"
+                BkgColor = "#3F51B5",
+                ImagePath = DataAndHelper.Data.NEW_TRAIL_ICON
             };
             itemAux = new MainPageItensPattern(menuInfo);
             ClickListenerAux = new TapGestureRecognizer();
@@ -49,20 +49,37 @@ namespace TrailMakers.UI
             };
             itemAux.GestureRecognizers.Add(ClickListenerAux);
             optionsList.Add(itemAux);
-            
+
             //------------------------------------------------------------------
             // Historico de Carridas
             menuInfo = new MenuOption()
             {
                 Name = "Historico de Corridas",
-                BkgColor = "#607D8B",
-                ImagePath = "http://simpleicon.com/wp-content/uploads/user1.png"
+                BkgColor = "#3F51B5",
+                ImagePath = DataAndHelper.Data.ROUTE_HISTORIC_ICON
             };
             itemAux = new MainPageItensPattern(menuInfo);
             ClickListenerAux = new TapGestureRecognizer();
             ClickListenerAux.Tapped += delegate
             {
                 Navigation.PushAsync(new HistoricPage());
+            };
+            itemAux.GestureRecognizers.Add(ClickListenerAux);
+            optionsList.Add(itemAux);
+
+            //------------------------------------------------------------------
+            // Historico de Carridas
+            menuInfo = new MenuOption()
+            {
+                Name = "Pesquisar trilhas",
+                BkgColor = "#ADADAD",
+                ImagePath = DataAndHelper.Data.TRAIL_SEARCH_ICON
+            };
+            itemAux = new MainPageItensPattern(menuInfo);
+            ClickListenerAux = new TapGestureRecognizer();
+            ClickListenerAux.Tapped += delegate
+            {
+                Navigation.PushAsync(new TrailSearch());
             };
             itemAux.GestureRecognizers.Add(ClickListenerAux);
             optionsList.Add(itemAux);

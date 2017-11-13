@@ -178,5 +178,77 @@ namespace TrailMakers.ApiServices
                 }
             };
         }
+
+        public List<Trail> SearchTrailAsync(string username, string trailName)
+        {
+            // Search by the creator of the trail
+            if (!String.IsNullOrEmpty(username))
+            {
+                return new List<Trail>()
+                {
+                    new Trail()
+                    {
+                        ID = 0,
+                        TrailName = "Teste",
+                        TrailDescription = "Teste de trilhas",
+                        Rating = 4,
+                        MainLatitude = -23.359240f,
+                        MainLongitude = -46.735410f,
+                        Distance = "0.5",
+                        Time = "1h 45m",
+                        User = new User()
+                        {
+                            Username = "Teste",
+                            Age = 20,
+                            UserId = 0,
+                        }
+                    }
+                };
+            }
+            else // Search by the trail name
+            {
+                return new List<Trail>()
+                {
+                    new Trail()
+                    {
+                        ID = 0,
+                        TrailName = "Teste 2",
+                        TrailDescription = "Teste de trilhas 2",
+                        Rating = 4,
+                        MainLatitude = -23.359240f,
+                        MainLongitude = -46.735410f,
+                        Distance = "0.5",
+                        Time = "1h 45m",
+                        User = new User()
+                        {
+                            Username = "Teste",
+                            Age = 20,
+                            UserId = 0,
+                        }
+                    }
+                };
+            }
+        }
+
+        public Trail GetTrailByIDAsync(int iD)
+        {
+            return new Trail()
+            {
+                ID = 0,
+                TrailName = "Teste",
+                TrailDescription = "Teste de trilhas",
+                Rating = 4,
+                MainLatitude = -23.359240f,
+                MainLongitude = -46.735410f,
+                Distance = "0.5",
+                Time = "1h 45m",
+                User = new User()
+                {
+                    Username = "Teste",
+                    Age = 20,
+                    UserId = 0,
+                }
+            };
+        }
     }
 }

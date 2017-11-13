@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Android.Graphics;
 using System.Threading.Tasks;
 
 namespace TrailMakers.Business.Interface
@@ -26,7 +23,8 @@ namespace TrailMakers.Business.Interface
         /// </summary>
         /// <param name="filename">Name of the file</param>
         /// <returns>return True if the file exists and False if not</returns>
-        bool CheckFile(string filename);
-
+        bool CheckFile(string filename, bool image);
+        void SaveImage(string filename, string imageURL);
+        Bitmap LoadImage(string filename);
     }
 }

@@ -7,13 +7,13 @@ namespace TrailMakers.Custom
     {
         public List<Position> RouteCoordinates { get; set; }
         public List<Position> AreaCoordinates { get; set; }
-        public List<Position> PinsCoordinates { get; set; }
+        public List<CustomPin> PinsCoordinates { get; set; }
 
         public CustomMap()
         {
             RouteCoordinates = new List<Position>();
             AreaCoordinates = new List<Position>();
-            PinsCoordinates = new List<Position>();
+            PinsCoordinates = new List<CustomPin>();
         }
     }
 }
