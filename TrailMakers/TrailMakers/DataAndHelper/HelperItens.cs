@@ -9,6 +9,11 @@ namespace TrailMakers.DataAndHelper
 {
     public class HelperItens
     {
+        public static Color GetPOIColor(Data.PinType pinType)
+        {
+            return Color.FromHex("#ADADAD");
+        }
+
         /// <summary>
         /// No content indicator page
         /// </summary>

@@ -17,5 +17,6 @@ namespace TrailMakers.Entity
         public int Rating { get; set; }
         public string Time { get; set; }
         public string Distance { get; set; }
+        public List<POI> POIList { get; set; }
     }
 }

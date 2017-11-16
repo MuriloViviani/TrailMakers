@@ -55,6 +55,7 @@
     <Compile Include="Entity\News.cs" />
     <Compile Include="Business\Interface\ILocate.cs" />
     <Compile Include="Business\Interface\ISaveAndLoad.cs" />
+    <Compile Include="Entity\POI.cs" />
     <Compile Include="Entity\Trail.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="UI\HistoricFeed\HistoricDetailPage.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="UI\Newsfeed\NewsDetailPage.cs" />
     <Compile Include="UI\Newsfeed\NewsPage.cs" />
     <Compile Include="UI\Newsfeed\NewsPattern.cs" />
+    <Compile Include="UI\POIView.cs" />
     <Compile Include="UI\TabbedMainPage.cs" />
     <Compile Include="UI\TrailSearch.cs" />
     <Compile Include="UI\UserPage\UserHomePage.cs" />

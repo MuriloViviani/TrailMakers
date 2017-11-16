@@ -11,11 +11,12 @@ using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
 using Xamarin.Forms.Platform.Android;
+using Android.Views;
 
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace TrailMakers.Droid.CustomRenderers
 {
-    public class CustomMapRenderer : MapRenderer
+    public class CustomMapRenderer : MapRenderer, GoogleMap.IInfoWindowAdapter
     {
         List<Position> routeCoordinates;
         List<CustomPin> pinsCoordinates;
@@ -42,6 +43,15 @@ namespace TrailMakers.Droid.CustomRenderers
                 Control.GetMapAsync(this);
             }
         }
+
+        protected override void OnMapReady(GoogleMap map)
+        {
+            base.OnMapReady(map);
+
+            NativeMap.InfoWindowClick += OnInfoWindowClick;
+            NativeMap.SetInfoWindowAdapter(this);
+        }
+
 
         protected override void OnLayout(bool changed, int l, int t, int r, int b)
         {
@@ -83,10 +93,7 @@ namespace TrailMakers.Droid.CustomRenderers
                         marker.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
                         marker.SetTitle(pin.Label);
                         marker.SetSnippet(pin.Address);
-
-                        // TODO: Temporary
-                        pin.IconUrl = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/96/Map-Marker-Marker-Outside-Chartreuse-icon.png";
-
+                        
                         imageURL = pin.IconUrl;
                         if (imageURL == "" || imageURL == null)
                             marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.location_pin));
@@ -125,6 +132,11 @@ namespace TrailMakers.Droid.CustomRenderers
             var customPin = GetCustomPin(e.Marker);
             if (customPin == null)
                 throw new Exception("pino_nao_encontrado");
+
+            if (customPin.Poi != null)
+            {
+                customPin.InfoWindowClicked(customPin);
+            }
         }
 
         private CustomPin GetCustomPin(Marker marker)
@@ -142,6 +154,36 @@ namespace TrailMakers.Droid.CustomRenderers
 
         public Android.Views.View GetInfoWindow(Marker marker)
         {
+            return null;
+        }
+
+        public Android.Views.View GetInfoContents(Marker marker)
+        {
+            /*var inflater = Android.App.Application.Context.GetSystemService(Context.LayoutInflaterService) as Android.Views.LayoutInflater;
+            if (inflater != null)
+            {
+                Android.Views.View view;
+
+                var customPin = GetCustomPin(marker);
+                if (customPin == null)
+                {
+                    throw new Exception("Custom pin not found");
+                }
+
+                var infoTitle = view.FindViewById<TextView>(Resource.Id.InfoWindowTitle);
+                var infoSubtitle = view.FindViewById<TextView>(Resource.Id.InfoWindowSubtitle);
+
+                if (infoTitle != null)
+                {
+                    infoTitle.Text = marker.Title;
+                }
+                if (infoSubtitle != null)
+                {
+                    infoSubtitle.Text = marker.Snippet;
+                }
+
+                return view;
+            }*/
             return null;
         }
     }

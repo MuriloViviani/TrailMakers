@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TrailMakers.Business.Interface;
 using TrailMakers.Custom;
+using TrailMakers.Entity;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -27,23 +28,25 @@ namespace TrailMakers.UI
             // Custom Pin
             var pin = new CustomPin()
             {
-                Type = PinType.Place,
                 Position = new Position(-23.359233, -46.735372),
                 Label = "Teste",
                 Address = "Teste",
-                Id = "Warning",
-                IconUrl = DataAndHelper.Data.DANGER_MAP_ICON
+                Id = DataAndHelper.Data.PinType.Danger,
+                IconUrl = DataAndHelper.Data.DANGER_MAP_ICON,
+                Poi = new POI()
+                {
+                    Description = "Aviso de perigo na trilha, esse aviso pode ser de extrema importância para perigos na trilha",
+                    Type = DataAndHelper.Data.PinType.Danger
+                }
             };
+            pin.InfoClicked += (sender) => 
+            {
+                var pinSelected = sender;
+                Navigation.PushModalAsync(new POIView(pinSelected));
+            };
+
             customMap.PinsCoordinates = new List<CustomPin> { pin };
             customMap.Pins.Add(pin);
-
-
-            customMap.RouteCoordinates.Add(new Position(-23.359233, -46.735372));
-            customMap.RouteCoordinates.Add(new Position(-23.358934, -46.735474));
-            customMap.RouteCoordinates.Add(new Position(-23.358448, -46.735365));
-            customMap.RouteCoordinates.Add(new Position(-23.358199, -46.735219));
-            customMap.RouteCoordinates.Add(new Position(-23.357896, -46.735614));
-            customMap.RouteCoordinates.Add(new Position(-23.357607, -46.736103));
 
             var place = locator.GetLocation();
             if(place == null)
