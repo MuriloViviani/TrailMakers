@@ -10,8 +10,8 @@ namespace TrailMakers.UI
     {
         public MainPage()
         {
-            BackgroundColor = Color.White;
-            //BackgroundImage = "mainBcg.png";
+            //BackgroundColor = Color.White;
+            BackgroundImage = "MainBack.png";
 
             var optionsList = new List<MainPageItensPattern>();
             // opções sendo criadas e adicionadas a lista
@@ -21,7 +21,7 @@ namespace TrailMakers.UI
             var menuInfo = new MenuOption()
             {
                 Name = "Meu Perfil",
-                BkgColor = "#3F51B5",
+                BkgColor = "#FFB74D",
                 ImagePath = DataAndHelper.Data.MY_PROFILE_ICON
             };
             var itemAux = new MainPageItensPattern(menuInfo);
@@ -38,7 +38,7 @@ namespace TrailMakers.UI
             menuInfo = new MenuOption()
             {
                 Name = "Nova Corrida",
-                BkgColor = "#3F51B5",
+                BkgColor = "#FFB74D",
                 ImagePath = DataAndHelper.Data.NEW_TRAIL_ICON
             };
             itemAux = new MainPageItensPattern(menuInfo);
@@ -55,7 +55,7 @@ namespace TrailMakers.UI
             menuInfo = new MenuOption()
             {
                 Name = "Historico de Corridas",
-                BkgColor = "#3F51B5",
+                BkgColor = "#FFB74D",
                 ImagePath = DataAndHelper.Data.ROUTE_HISTORIC_ICON
             };
             itemAux = new MainPageItensPattern(menuInfo);
@@ -72,7 +72,7 @@ namespace TrailMakers.UI
             menuInfo = new MenuOption()
             {
                 Name = "Pesquisar trilhas",
-                BkgColor = "#ADADAD",
+                BkgColor = "#FFB74D",
                 ImagePath = DataAndHelper.Data.TRAIL_SEARCH_ICON
             };
             itemAux = new MainPageItensPattern(menuInfo);

@@ -169,7 +169,7 @@ namespace TrailMakers.UI.UserPage
                     {
                         VerticalOptions = LayoutOptions.Center,
                         HorizontalOptions = LayoutOptions.FillAndExpand,
-                        BackgroundColor = Color.FromHex("#2196F3"),
+                        BackgroundColor = Color.FromHex("#FF9800"),
                         Spacing = 10,
                         Padding = new Thickness(10,20,10,20),
                         Children =
