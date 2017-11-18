@@ -5,7 +5,7 @@ using TrailMakers.Entity;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
-namespace TrailMakers.UI
+namespace TrailMakers.UI.MapView
 {
     public class MapPage : ContentPage
     {

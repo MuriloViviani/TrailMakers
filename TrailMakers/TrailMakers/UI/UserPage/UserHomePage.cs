@@ -21,8 +21,7 @@ namespace TrailMakers.UI.UserPage
 
         public UserHomePage()
         {
-            BackgroundColor = Color.White;
-            //Content = HelperItens.Load();
+            BackgroundImage = "BcgMyProfile.png";
 
             apiServices = new ApiRequestN();
 

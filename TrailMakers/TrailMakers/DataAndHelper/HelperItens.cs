@@ -3,15 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrailMakers.Custom;
+using TrailMakers.Entity;
 using Xamarin.Forms;
 
 namespace TrailMakers.DataAndHelper
 {
     public class HelperItens
     {
-        public static Color GetPOIColor(Data.PinType pinType)
+        public static CustomPin FixPOI(CustomPin pin)
         {
-            return Color.FromHex("#ADADAD");
+            var pinFixed = new CustomPin()
+            {
+                Poi = pin.Poi,
+            };
+
+            pinFixed.IconUrl = pin.IconUrl.Replace("_60", "_120");
+
+            if (pinFixed.Poi.Type == Data.PinType.Begin)
+                pinFixed.Name = "Inicio da trilha";
+            else if (pinFixed.Poi.Type == Data.PinType.Danger)
+                pinFixed.Name = "Perigo";
+            else if (pinFixed.Poi.Type == Data.PinType.End)
+                pinFixed.Name = "Fim da trilha";
+            else if (pinFixed.Poi.Type == Data.PinType.Help)
+                pinFixed.Name = "Pedido de ajuda";
+            else if (pinFixed.Poi.Type == Data.PinType.Rest)
+                pinFixed.Name = "Ponto de descanso";
+            else if (pinFixed.Poi.Type == Data.PinType.Turism)
+                pinFixed.Name = "Um ótimo ponto para uma foto!";
+            else
+                pinFixed.Name = "Existe uma fonte de água por aqui!";
+
+            return pinFixed;
         }
 
         /// <summary>

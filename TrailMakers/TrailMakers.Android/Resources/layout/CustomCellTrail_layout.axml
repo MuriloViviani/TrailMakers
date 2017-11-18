@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:background="#FFFFFF">
+    android:padding="8dp">
     <LinearLayout
         android:id="@+id/Text"
         android:orientation="vertical"
@@ -16,20 +15,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dip"
-            android:textStyle="italic" />
-        <TextView
-            android:id="@+id/DistanceText"
-            android:text="---"
+            android:fontFamily="roboto" />
+        <LinearLayout
+            android:id="@+id/Text"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14dip"
-            android:paddingLeft="100dip" />
-        <TextView
-            android:id="@+id/TimeText"
-            android:text="---"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14dip"
-            android:paddingLeft="100dip" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/DistanceText"
+                android:text="---"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dip" />
+            <TextView
+                android:id="@+id/TimeText"
+                android:text="---"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dip"
+                android:paddingLeft="100dip" />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -13,6 +13,9 @@ namespace TrailMakers.UI.HistoricFeed
         public HistoricPage()
         {
             Title = "Historico de trilhas";
+            BackgroundColor = Color.White;
+
+            Content = DataAndHelper.HelperItens.Load();
 
             lvHistoric = new ListView
             {
@@ -20,7 +23,7 @@ namespace TrailMakers.UI.HistoricFeed
                 {
                     var dtLvOpcoes = new CustomCellTrail();
                     dtLvOpcoes.SetBinding(CustomCellTrail.NameProperty, "Name");
-                    dtLvOpcoes.SetBinding(CustomCellTrail.DistanceProperty, "Distance");
+                    dtLvOpcoes.SetBinding(CustomCellTrail.DistanceProperty, "DistShownd");
                     dtLvOpcoes.SetBinding(CustomCellTrail.TimeProperty, "TimeSpent");
 
                     return dtLvOpcoes;
@@ -40,8 +43,11 @@ namespace TrailMakers.UI.HistoricFeed
                 // Cleans the selection
                 ((ListView)sender).SelectedItem = null;
             };
+        }
 
-            var historic = apiServices.GetUserHistoricAsync();
+        private async void LoadScreen()
+        {
+            var historic = await apiServices.GetUserHistoricAsync();
             lvHistoric.ItemsSource = historic;
 
             Content = new StackLayout

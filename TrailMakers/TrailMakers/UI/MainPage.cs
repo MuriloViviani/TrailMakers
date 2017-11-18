@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TrailMakers.Entity;
 using TrailMakers.UI.HistoricFeed;
+using TrailMakers.UI.MapView;
 using TrailMakers.UI.UserPage;
 using Xamarin.Forms;
 
@@ -71,7 +72,7 @@ namespace TrailMakers.UI
             // Historico de Carridas
             menuInfo = new MenuOption()
             {
-                Name = "Pesquisar trilhas",
+                Name = "Pesquisar Trilhas",
                 BkgColor = "#FFB74D",
                 ImagePath = DataAndHelper.Data.TRAIL_SEARCH_ICON
             };

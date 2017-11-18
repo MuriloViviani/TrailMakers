@@ -24,9 +24,9 @@ namespace TrailMakers.Business
             return apiService.GetUserDataAsync(userID);
         }
 
-        public List<Historic> GetUserHistoricAsync()
+        public async Task<List<Historic>> GetUserHistoricAsync()
         {
-            return apiService.GetUserHistoricAsync(0);
+            return await apiService.GetUserHistoricAsync(0);
         }
 
         public Trail GetTrailByIdAsync(int ID)
@@ -34,31 +34,39 @@ namespace TrailMakers.Business
             return apiService.GetTrailByIDAsync(ID);
         }
 
-        public List<Trail> SearchTrailsAsync(string username, string trailName)
+        public async Task<List<Trail>> SearchTrailsAsync(string username, string trailName)
         {
-            var list = apiService.SearchTrailAsync(username, trailName);
+            var list = await apiService.GetTrailSearchAsync();
             foreach (var item in list)
             {
-                foreach(var poi in item.POIList)
-                {
-                    if (poi.Type.Equals(PinType.Danger))
-                        poi.IconUlr = DANGER_MAP_ICON;
-                    else if(poi.Type.Equals(PinType.Help))
-                        poi.IconUlr = HELP_REQUEST_MAP_ICON;
-                    else if (poi.Type.Equals(PinType.Turism))
-                        poi.IconUlr = PICTURE_POINT_MAP_ICON;
-                    else if (poi.Type.Equals(PinType.Begin))
-                        poi.IconUlr = NEW_TRAIL_ICON;
-                    else if (poi.Type.Equals(PinType.End))
-                        poi.IconUlr = END_MAP_ICON;
-                    else if (poi.Type.Equals(PinType.Rest))
-                        poi.IconUlr = REST_MAP_ICON;
-                    else if (poi.Type.Equals(PinType.Water))
-                        poi.IconUlr = WATER_MAP_ICON;
+                var aux = item.Time.ToString("hh:mm").Split(':');
+                item.TimeShownd = aux[0] + "Hrs " + aux[1] + "Min";
 
-                    if (!fileService.CheckFile(poi.IconUlr, true))
+                item.DistShownd = "Distância: " + item.Distance;
+
+                if (item.POIList != null)
+                {
+                    foreach (var poi in item.POIList)
                     {
-                        fileService.SaveImage(poi.IconUlr.Replace("/","_").Replace(".", "_"), poi.IconUlr);
+                        if (poi.Type.Equals(PinType.Danger))
+                            poi.IconUlr = DANGER_MAP_ICON;
+                        else if (poi.Type.Equals(PinType.Help))
+                            poi.IconUlr = HELP_REQUEST_MAP_ICON;
+                        else if (poi.Type.Equals(PinType.Turism))
+                            poi.IconUlr = PICTURE_POINT_MAP_ICON;
+                        else if (poi.Type.Equals(PinType.Begin))
+                            poi.IconUlr = NEW_TRAIL_ICON;
+                        else if (poi.Type.Equals(PinType.End))
+                            poi.IconUlr = END_MAP_ICON;
+                        else if (poi.Type.Equals(PinType.Rest))
+                            poi.IconUlr = REST_MAP_ICON;
+                        else if (poi.Type.Equals(PinType.Water))
+                            poi.IconUlr = WATER_MAP_ICON;
+
+                        if (!fileService.CheckFile(poi.IconUlr, true))
+                        {
+                            fileService.SaveImage(poi.IconUlr.Replace("/", "_").Replace(".", "_"), poi.IconUlr);
+                        }
                     }
                 }
             }

@@ -1,4 +1,5 @@
-﻿using TrailMakers.Business;
+﻿using System.Collections.Generic;
+using TrailMakers.Business;
 using TrailMakers.Custom;
 using TrailMakers.DataAndHelper;
 using TrailMakers.Entity;
@@ -13,6 +14,8 @@ namespace TrailMakers.UI
         SearchBar sb;
         ListView lvSearch;
 
+        List<Trail> trails = new List<Trail>();
+
         public TrailSearch()
         {
             Title = "Procurar trilhas";
@@ -26,8 +29,8 @@ namespace TrailMakers.UI
                 {
                     var dtLvOpcoes = new CustomCellTrail();
                     dtLvOpcoes.SetBinding(CustomCellTrail.NameProperty, "TrailName");
-                    dtLvOpcoes.SetBinding(CustomCellTrail.DistanceProperty, "Distance");
-                    dtLvOpcoes.SetBinding(CustomCellTrail.TimeProperty, "Time");
+                    dtLvOpcoes.SetBinding(CustomCellTrail.DistanceProperty, "DistShownd");
+                    dtLvOpcoes.SetBinding(CustomCellTrail.TimeProperty, "TimeShownd");
 
                     return dtLvOpcoes;
                 }),
@@ -41,8 +44,6 @@ namespace TrailMakers.UI
                 if (selectedIten == null)
                     return;
 
-                //Navigation.PushAsync(new HistoricDetailPage(selectedHistory));
-
                 // Cleans the selection
                 ((ListView)sender).SelectedItem = null;
             };
@@ -53,11 +54,22 @@ namespace TrailMakers.UI
                 SearchCommand = new Command(() =>
                 {
                     lvSearch.BeginRefresh();
-                    lvSearch.ItemsSource = apiRequest.SearchTrailsAsync(sb.Text, sb.Text);
+
+                    trails.Sort((x, y) => x.TrailName.CompareTo(y.TrailName));
+                    lvSearch.ItemsSource = trails;
 
                     lvSearch.EndRefresh();
                 })
             };
+
+            LoadScreen();
+        }
+
+        private async void LoadScreen()
+        {
+            trails = await apiRequest.SearchTrailsAsync("","");
+
+            lvSearch.ItemsSource = trails;
 
             Content = new ScrollView()
             {

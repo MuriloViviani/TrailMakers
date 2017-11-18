@@ -6,23 +6,19 @@ namespace TrailMakers.DataAndHelper
     {
         // TODO: Update curiosities
         public static string[] curiosities = new string[] {
-            "Jundiaí possui 401.896 habitantes. Sendo o 15º município mais populoso do estado e o sétimo maior fora da grande São Paulo",
-            "O nome 'Jundiaí' é uma referência ao Rio Jundiaí, cujo nome vem da língua tupi e significa “Rio dos Jundiás”, um peixe característico da região",
-            "Jundiaí é a cidade que tem o melhor saneamento do Brasil, segundo o Instituto Trata Brasil",
-            "Jundiaí é a 11ª melhor cidade para se viver no Brasil, segundo a ONU",
-            "Jundiaí possui cidades-irmãs, sendo elas Havana (Cuba), Pádua (Itália), Trenton (EUA) e as brasileiras Santo André e Poços de Caldas. Cidades irmãs são laços de vários níveis, como no aspecto cultural e econômico",
-            "Jundiaí é vizinha de 11 municípios: Várzea Paulista, Campo Limpo Paulista, Franco da Rocha, Cajamar, Pirapora do Bom Jesus, Cabreúva, Itupeva, Louveira, Vinhedo, Itatiba e Jarinú",
-            "No século 18, as ruas do centro tinham nomes diferentes dos quais são hoje. Rua Direita (atual Barão de Jundiaí), Rua do Meio (Rua do Rosário), Rua Nova (Senador Fonseca) e Rua Boa Vista (Zacarias de Góes)",
-            "No século 18, se tem registro de que o ponto mais movimentado da cidade era a praça da Bandeira, onde hoje está o Terminal Central",
-            "Em Jundiaí, o abastecimento de água foi implantado em 1881. A energia elétrica chegou em 1905 e o telefone em 1916",
-            "Ao longo dos séculos 17, 18 e início do 19, a economia da cidade se limitava a pequenas lavouras de subsistência, que abasteciam moradores da vila, tropeiros e bandeirantes",
-            "De acordo com censo realizado pelo Governo Federal, em 1920, Jundiaí possuía uma população de 44.437 habitantes",
-            "Depois que o imperador D. Pedro II ordenou às províncias a criação de núcleos coloniais, o então Presidente da Província de São Paulo, Antônio de Queiroz Telles, criou quatro núcleos, entre eles “Núcleo Colonial Barão de Jundiaí”, em 4 de outubro de 1886, atual região do bairro da Colônia",
-            "A Estação Ferroviária de Jundiaí foi inaugurada após sete anos de obra, em 1867. Denominada de São Paulo Railway, ela ligava a cidade portuária de Santos a São Paulo e Jundiaí.",
-            "Aos poucos, tanto os imigrantes como seus descendentes foram se integrando à comunidade jundiaiense. Hoje, mais de 75% da população de Jundiaí é descendente de imigrantes italianos",
-            "Jundiaí destaca-se, atualmente, no desenvolvimento das áreas cultural, educacional, tecnológica e ambiental",
-            "O aniversário de Jundiaí é comemorado em 14 de dezembro",
-            "O Jardim Botânico de Jundiaí, inaugurado em 29 de dezembro de 2004, com uma área de 150.000 m², surgiu como uma proposta de recuperação para uma área com longo histórico de degradação"
+            "Até 2015, a França já contava com cerca de 14 mil km de vias urbanas destinadas aos ciclistas",
+            "Em 2016, a UCI e a organização do Tour de France utilizaram câmeras com sistema de sensores térmicos para detectar ciclistas que estariam utilizando motores ocultos nas bicicletas",
+            "O Mountain Bike, no estilo Cross Country, entrou no ciclo olímpico em 1996, nos Jogos de Barcelona. A França conquistou uma medalha de bronze, com Miguel Martinez. Nas três edições seguintes, o país ficou com o primeiro lugar",
+            "É bastante comum encontrar franceses fazendo grandes percursos de bicicleta em estradas e montanhas, não apenas no uso dentro da cidade. Algumas das mais conhecidas e apreciadas são: Grande Traversée du Jura, Grande Traversée des Alpes e Grande Traversée du Massif Central",
+            "Muitos espectadores se fantasiam para acompanhar as competições de ciclismo de perto",
+            "O recorde de maior pulo registrado sem o uso de rampas, ou varas é de 2014; com a marca de 1m e 48cm",
+            "O suíço Manuel Scheidegger quebrou o recorde de distância pedalada com a bike empinada no período de uma hora, em junho de 2015. O ciclista pedalou por 25,72 km, com sua bike empinada",
+            "Em outubro de 2013 o australiano Andrew Hellinga superou o recorde mundial pedalado de costas por 337km em 24 horas",
+            "O alemão Christian Adam, que aprendeu a pedalar aos 4 anos de idade, combinou sua outra paixão (o violino) para quebrar o recorde mundial de ciclismo de costas tocando seu violino; o ciclista pedalou por 5 horas e 9 minutos, percorrendo os 60,4 km do recorde",
+            "O ciclista polonês Krystian Herba quebrou o recorde mundial de subida em uma escadaria, com sua bike. Herba “escalou” um dos arranha-céus mais altos do mundo, o Taipei 101, que fica em Taiwan. Em cima de sua bike, ele subiu incríveis 3.139 degraus em 2 horas e 13 minutos, em março de 2015",
+            "Craig Cannon pedalou por 48 horas e deu 227 voltas em um percurso do parque Tilden Regional Park em São Francisco",
+            "O ciclista francês Robert Marchand quebrou o conhecido Hour Record, na categoria acima dos 100 anos de idade. Marchand pedalou 26,92 km em uma hora, o que representa 2,5 km a mais do que seu último recorde",
+            "O californiano Kurt Osburn, possui o recorde de maior tempo pedalado com a bike empinada. Em 1998 Osburn pedalou durante 11 horas, com apenas a roda de trás encostando no chão"
         };
 
         // TODO: Change the application colors

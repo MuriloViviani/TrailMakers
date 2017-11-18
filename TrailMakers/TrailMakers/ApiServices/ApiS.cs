@@ -32,8 +32,22 @@ namespace TrailMakers.ApiServices
             };
         }
 
-        public List<Historic> GetUserHistoricAsync(int userId)
+        public async Task<List<Historic>> GetUserHistoricAsync(int userId)
         {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    string retorno = await httpClient.GetStringAsync(ConfigAPI.ALL_TRAIL_SEARCH);
+
+                    //return JsonConvert.DeserializeObject<List<Historic>>(retorno);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
             return new List<Historic>()
             {
                 new Historic()
@@ -194,8 +208,8 @@ namespace TrailMakers.ApiServices
                         Rating = 4,
                         MainLatitude = -23.359240f,
                         MainLongitude = -46.735410f,
-                        Distance = "0.5",
-                        Time = "1h 45m",
+                        Distance = 0.5f,
+                        Time = DateTime.Now,
                         User = new User()
                         {
                             Username = "Teste",
@@ -217,8 +231,8 @@ namespace TrailMakers.ApiServices
                         Rating = 4,
                         MainLatitude = -23.359240f,
                         MainLongitude = -46.735410f,
-                        Distance = "0.5",
-                        Time = "1h 45m",
+                        Distance = 0.5f,
+                        Time = DateTime.Now,
                         User = new User()
                         {
                             Username = "Teste",
@@ -240,8 +254,8 @@ namespace TrailMakers.ApiServices
                 Rating = 4,
                 MainLatitude = -23.359240f,
                 MainLongitude = -46.735410f,
-                Distance = "0.5",
-                Time = "1h 45m",
+                Distance = 0.5f,
+                Time = DateTime.Now,
                 User = new User()
                 {
                     Username = "Teste",
@@ -249,6 +263,26 @@ namespace TrailMakers.ApiServices
                     UserId = 0,
                 }
             };
+        }
+
+        public async Task<List<Trail>> GetTrailSearchAsync()
+        {
+            try
+            {
+                SuporteTrails trails = new SuporteTrails() { };
+                using (var httpClient = new HttpClient())
+                {
+                    string retorno = await httpClient.GetStringAsync(ConfigAPI.ALL_TRAIL_SEARCH);
+
+                    trails = JsonConvert.DeserializeObject<SuporteTrails>(retorno);
+                }
+
+                return trails.rows;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
     }
 }
