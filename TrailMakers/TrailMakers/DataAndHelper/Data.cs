@@ -66,12 +66,12 @@ namespace TrailMakers.DataAndHelper
         public static string NEW_TRAIL_ICON = "http://trailapi.azurewebsites.net/assets/images/NEW_TRAIL_ICON.png";
         public static string ROUTE_HISTORIC_ICON = "http://trailapi.azurewebsites.net/assets/images/HistoricoRota.png";
         public static string TRAIL_SEARCH_ICON = "http://trailapi.azurewebsites.net/assets/images/TrailSearch.png";
-        public static string BEGIN_MAP_ICON = "http://trailapi.azurewebsites.net/assets/images/begin_icon_60.png";
-        public static string END_MAP_ICON = "http://trailapi.azurewebsites.net/assets/images/end_icon_60.png";
-        public static string DANGER_MAP_ICON = "http://trailapi.azurewebsites.net/assets/images/Danger_Icon_60.png";
-        public static string HELP_REQUEST_MAP_ICON = "http://trailapi.azurewebsites.net/assets/images/helprequest_icon_60.png";
-        public static string PICTURE_POINT_MAP_ICON = "http://trailapi.azurewebsites.net/assets/images/picturepoint_icon_60.png";
-        public static string REST_MAP_ICON = "http://trailapi.azurewebsites.net/assets/images/restpoint_icon_60.png";
-        public static string WATER_MAP_ICON = "http://trailapi.azurewebsites.net/assets/images/water_icon_60.png";
+        public static string BEGIN_MAP_ICON = "http://trainway.azurewebsites.net/media/begin_icon_60.png";
+        public static string END_MAP_ICON = "http://trainway.azurewebsites.net/media/end_icon_60.png";
+        public static string DANGER_MAP_ICON = "http://trainway.azurewebsites.net/media/Danger_Icon_60.png";
+        public static string HELP_REQUEST_MAP_ICON = "http://trainway.azurewebsites.net/media/helprequest_icon_60.png";
+        public static string PICTURE_POINT_MAP_ICON = "http://trainway.azurewebsites.net/media/picturepoint_icon_60.png";
+        public static string REST_MAP_ICON = "http://trainway.azurewebsites.net/media/restpoint_icon_60.png";
+        public static string WATER_MAP_ICON = "http://trainway.azurewebsites.net/media/water_icon_60.png";
     }
 }

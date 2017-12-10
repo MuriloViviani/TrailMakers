@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TrailMakers.Entity;
 using TrailMakers.UI.HistoricFeed;
 using TrailMakers.UI.MapView;
@@ -63,7 +64,7 @@ namespace TrailMakers.UI
             ClickListenerAux = new TapGestureRecognizer();
             ClickListenerAux.Tapped += delegate
             {
-                Navigation.PushAsync(new HistoricPage());
+                Navigation.PushAsync(new HistoricPage_Copy());
             };
             itemAux.GestureRecognizers.Add(ClickListenerAux);
             optionsList.Add(itemAux);
@@ -113,6 +114,125 @@ namespace TrailMakers.UI
                 count++;
             }
             mainLayout.Children.Add(supportLayout);
+
+
+            //-----------------
+            Button btn = new Button()
+            {
+                Text = "Do IT"
+            };
+            btn.Clicked += delegate
+            {
+                Business.ApiRequestN api = new Business.ApiRequestN();
+
+                var hist = new Historic()
+                {
+                    Id = 0,
+                    Name = "teste",
+                    Description = "Apenas um teste de trilha, mas que pode ser bem interessante caso de certo!",
+                    Date = DateTime.Now.ToString("dd/MM/yyyy"),
+                    TrailPath = new List<Location>()
+                    {
+                        new Location()
+                        {
+                            Latitude = -23.359192,
+                            Longitude = -46.735441
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.358897,
+                            Longitude = -46.735538
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.358266,
+                            Longitude = -46.735270
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.357416,
+                            Longitude = -46.736457
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.357495,
+                            Longitude = -46.737895
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.356126,
+                            Longitude = -46.740148
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.355377,
+                            Longitude = -46.741467
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.355692,
+                            Longitude = -46.741703
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.356973,
+                            Longitude = -46.740459
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.358086,
+                            Longitude = -46.738549
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.360361,
+                            Longitude = -46.736178
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.362719,
+                            Longitude = -46.735915
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.364876,
+                            Longitude = -46.734424
+                        },
+                        new Location()
+                        {
+                            Latitude = -23.366629,
+                            Longitude = -46.732685
+                        }
+                    },
+                    Poi = new List<POI>()
+                    {
+                        new POI()
+                        {
+                            Type = DataAndHelper.Data.PinType.Turism,
+                            Latitude = -23.358266,
+                            Longitude = -46.735270
+                        },
+                        new POI()
+                        {
+                            Type = DataAndHelper.Data.PinType.Begin,
+                            Latitude = -23.359192,
+                            Longitude = -46.735441
+                        },
+                        new POI()
+                        {
+                            Type = DataAndHelper.Data.PinType.End,
+                            Latitude = -23.366629,
+                            Longitude = -46.732685
+                        }
+                    }
+                };
+
+                api.AddToUserHistoricAsync(hist);
+
+                DisplayAlert("YEY!", "Deu certo!", "YUPI");
+            };
+            mainLayout.Children.Add(btn);
+            //-----------------
 
             var sv = new ScrollView() { Content = mainLayout };
             Content = sv;

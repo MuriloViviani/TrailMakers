@@ -59,6 +59,8 @@
     <Compile Include="Entity\Trail.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="UI\HistoricFeed\HistoricDetailPage.cs" />
+    <Compile Include="UI\HistoricFeed\HistoricListCompView.cs" />
+    <Compile Include="UI\HistoricFeed\HistoricPage_Copy.cs" />
     <Compile Include="UI\HistoricFeed\HistoricPage.cs" />
     <Compile Include="UI\MainPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

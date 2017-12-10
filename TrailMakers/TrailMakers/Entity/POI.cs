@@ -10,8 +10,8 @@ namespace TrailMakers.Entity
     public class POI
     {
         public int PoiID { get; set; }
-        public float Latitude { get; set; }
-        public float Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public PinType Type { get; set; }
         public string Description { get; set; }
         public string IconUlr { get; set; }
