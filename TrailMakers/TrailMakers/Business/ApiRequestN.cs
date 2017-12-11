@@ -29,18 +29,21 @@ namespace TrailMakers.Business
         {
             var list = JsonConvert.DeserializeObject<List<Historic>>(await fileService.LoadTextAsync("historic.json"));
 
-            foreach (var item in list)
+            if (list != null)
             {
-                item.Distance = "Distância: " + item.Distance;
-
-                if (item.Poi != null)
+                foreach (var item in list)
                 {
-                    item.Poi = FixPOI(item.Poi);
-                }
+                    item.Distance = "Distância: " + item.Distance;
 
-                var mainPos = SetMainPositions(item.TrailPath);
-                item.MainLatitude = mainPos[0];
-                item.MainLongitude = mainPos[1];
+                    if (item.Poi != null)
+                    {
+                        item.Poi = FixPOI(item.Poi);
+                    }
+
+                    var mainPos = SetMainPositions(item.TrailPath);
+                    item.MainLatitude = mainPos[0];
+                    item.MainLongitude = mainPos[1];
+                }
             }
 
             return list;
@@ -65,16 +68,19 @@ namespace TrailMakers.Business
         public async Task<List<Trail>> SearchTrailsAsync(string username, string trailName)
         {
             var list = await apiService.GetTrailSearchAsync();
-            foreach (var item in list)
+            if (list != null)
             {
-                var aux = item.Time.ToString("hh:mm").Split(':');
-                item.TimeShownd = aux[0] + "Hrs " + aux[1] + "Min";
-
-                item.DistShownd = "Distância: " + item.Distance;
-
-                if (item.POIList != null)
+                foreach (var item in list)
                 {
-                    item.POIList = FixPOI(item.POIList);
+                    var aux = item.Time.ToString("hh:mm").Split(':');
+                    item.TimeShownd = aux[0] + "Hrs " + aux[1] + "Min";
+
+                    item.DistShownd = "Distância: " + item.Distance;
+
+                    if (item.POIList != null)
+                    {
+                        item.POIList = FixPOI(item.POIList);
+                    }
                 }
             }
 
