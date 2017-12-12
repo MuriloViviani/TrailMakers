@@ -23,7 +23,7 @@ namespace TrailMakers.UI.HistoricFeed
 
             if (trails != null)
             {
-                StackLayout layout = new StackLayout();
+                StackLayout layout = new StackLayout() { Padding = new Thickness(5, 5, 5, 5) };
                 foreach (var trail in trails)
                 {
                     layout.Children.Add(new HistoricListCompView(trail));

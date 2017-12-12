@@ -5,8 +5,8 @@ using TrailMakers.ApiServices;
 using TrailMakers.Business.Interface;
 using TrailMakers.Entity;
 using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 using static TrailMakers.DataAndHelper.Data;
+using System;
 
 namespace TrailMakers.Business
 {
@@ -20,9 +20,22 @@ namespace TrailMakers.Business
             return await apiService.GetNewsAsync();
         }
 
-        public User GetUserDataAsync(int userID)
+        public bool SetUserData(User user)
         {
-            return apiService.GetUserDataAsync(userID);
+            try
+            {
+                fileService.SaveTextAsync("user.json", JsonConvert.SerializeObject(user));
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public async Task<User> GetUserDataAsync()
+        {
+            return JsonConvert.DeserializeObject<User>(await fileService.LoadTextAsync("user.json"));
         }
 
         public async Task<List<Historic>> GetUserHistoricAsync()
@@ -49,15 +62,20 @@ namespace TrailMakers.Business
             return list;
         }
 
-        public async void AddToUserHistoricAsync(Historic trail)
+        public async Task<bool> AddToUserHistoricAsync(Historic trail)
         {
             var list = new List<Historic>();
             if (fileService.CheckFile("historic.json", false))
                 list = JsonConvert.DeserializeObject<List<Historic>>(await fileService.LoadTextAsync("historic.json"));
 
+            if (list == null)
+                list = new List<Historic>();
+
             list.Add(trail);
 
             await fileService.SaveTextAsync("historic.json", JsonConvert.SerializeObject(list));
+
+            return true;
         }
 
         public Trail GetTrailByIdAsync(int ID)

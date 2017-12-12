@@ -21,7 +21,7 @@ namespace TrailMakers.UI.UserPage
 
         public UserHomePage()
         {
-            BackgroundImage = "BcgMyProfile.png";
+            BackgroundColor = Color.White;
 
             apiServices = new ApiRequestN();
 
@@ -31,17 +31,21 @@ namespace TrailMakers.UI.UserPage
         public async void LoadData()
         {
             bool userAvailable = false;
-            var user = JsonConvert.DeserializeObject<User>(await fileServices.LoadTextAsync("UserData"));
+            var userExists = fileServices.CheckFile("user.json", false);
+            User user = new User();
 
-            if (user == null)
+            if (userExists == false)
             {
-                // TODO: Implement new user message
-                
+                await DisplayAlert("Hey Hey!", "Parece que você é novo por aqui trilheiro!\n\nÉ importante saber que antes de qualuqer coisa é necessário que seus dados estejam cadastrados aqui para que você consiga usar tudo o uqe o App pode oferecer!", "Whaaat?");
+                await DisplayAlert("Ainda não pegou?", "É simples, para que você possa criar qualquer atalho ou trilha é necessário que um usuário seja cadastrado!", "Conte-me mais");
+                await DisplayAlert("Quase lá!", "Depois que você cadastrar seu usuário nós saberemos quem você é -_-", "Mas e os meus dados?");
+                await DisplayAlert("¬¬", "Não se preocupe com seus dados, não faremos nenhum mal a eles, é apenas para saber que é você mesmo!", "Ahhh");
+                await DisplayAlert("Yey!", "Agora para começarmos, que tal criar seu usuário? é bem rápido! coisa de 1 min =D", "Vamos nessa!");
             }
             else
             {
                 userAvailable = true;
-                apiServices.GetUserDataAsync(user.UserId);
+                user = await apiServices.GetUserDataAsync();
             }
 
             #region FILLING OF THE USER INFO
@@ -57,7 +61,7 @@ namespace TrailMakers.UI.UserPage
 
             userName = new Label()
             {
-                Text = "new_user",
+                Text = "NovoTrilheiro",
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.Start
@@ -67,7 +71,7 @@ namespace TrailMakers.UI.UserPage
 
             userCompleteName = new Label()
             {
-                Text = "Your Complete Name",
+                Text = "Seu nome de trilheiro completo",
                 FontSize = Device.GetNamedSize(NamedSize.Default, typeof(Label)),
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.Start
@@ -79,7 +83,7 @@ namespace TrailMakers.UI.UserPage
             {
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Placeholder = "Seu nome"
+                Placeholder = "Seu nome aqui"
             };
             if (userAvailable)
                 txtUsercompleteName.Text = user.Name;
@@ -117,7 +121,7 @@ namespace TrailMakers.UI.UserPage
             {
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Text = "Hey! Sou um Tribeiro!"
+                Text = "Hey! Sou um Trilheiro!"
             };
             if (userAvailable)
                 txtUserDetail.Text = user.UserDetail;
@@ -130,11 +134,25 @@ namespace TrailMakers.UI.UserPage
                 Text = "Salvar",
                 BackgroundColor = Color.FromHex("#4CAF50")
             };
-            btnSave.Clicked += async delegate 
+
+            btnSave.Clicked += async delegate
             {
                 var x = await DisplayAlert("Atenção", "Após feitas estas alterações seu perfil nunca mais será o mesmo\n\n Deseja continuar?", "Com certeza!", "Esta louco?");
                 if (x)
                 {
+                    ApiRequestN apiServices = new ApiRequestN();
+
+                    var updateUser = new User()
+                    {
+                        Name = txtUsercompleteName.Text,
+                        Username = txtUserName.Text,
+                        Email = txtEmail.Text,
+                        Age = int.Parse(txtAge.Text),
+                        UserDetail = txtUserDetail.Text
+                    };
+
+                    apiServices.SetUserData(updateUser);
+
                     await DisplayAlert("Sucesso!", "As alterações foram aplicadas com sucesso =)", "Yey!");
                     await Navigation.PopModalAsync();
                 }

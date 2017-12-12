@@ -10,7 +10,8 @@ namespace TrailMakers.Business.Interface
         Task<List<Trail>> SearchTrailsAsync(string username, string trailName);
         Trail GetTrailByIdAsync(int ID);
         Task<List<Historic>> GetUserHistoricAsync();
-        void AddToUserHistoricAsync(Historic trail);
-        User GetUserDataAsync(int userID);
+        Task<bool> AddToUserHistoricAsync(Historic trail);
+        Task<User> GetUserDataAsync();
+        bool SetUserData(User user);
     }
 }
