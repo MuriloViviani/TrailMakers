@@ -26,7 +26,15 @@ namespace TrailMakers.UI.HistoricFeed
                 StackLayout layout = new StackLayout() { Padding = new Thickness(5, 5, 5, 5) };
                 foreach (var trail in trails)
                 {
-                    layout.Children.Add(new HistoricListCompView(trail));
+                    var detail = new HistoricListCompView(trail);
+                    var gestureRec = new TapGestureRecognizer();
+                    gestureRec.Tapped += delegate
+                    {
+                        Navigation.PushModalAsync(new HistoricDetailPage(trail));
+                    };
+                    detail.GestureRecognizers.Add(gestureRec);
+
+                    layout.Children.Add(detail);
                 }
 
                 ScrollView sv = new ScrollView() { Content = layout };

@@ -1,4 +1,6 @@
-﻿using TrailMakers.Custom;
+﻿using Java.Lang;
+using TrailMakers.Business.Interface;
+using TrailMakers.Custom;
 using TrailMakers.Entity;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -7,6 +9,8 @@ namespace TrailMakers.UI.HistoricFeed
 {
     public class HistoricListCompView : ContentView
     {
+        private ILocate locator = DependencyService.Get<ILocate>();
+
         public HistoricListCompView(Historic histTrail)
         {
             var customMap = new CustomMap
@@ -17,7 +21,7 @@ namespace TrailMakers.UI.HistoricFeed
                 HasZoomEnabled = false,
                 HasScrollEnabled = false,
             };
-
+            
             foreach (var poi in histTrail.Poi)
             {
                 customMap.PinsCoordinates.Add(new CustomPin()
@@ -39,7 +43,20 @@ namespace TrailMakers.UI.HistoricFeed
                 customMap.RouteCoordinates.Add(new Position(pos.Latitude, pos.Longitude));
             }
 
-            customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(histTrail.MainLatitude, histTrail.MainLongitude), Distance.FromKilometers(1)));
+            if(!double.IsNaN(histTrail.MainLatitude))
+            {
+                customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(histTrail.MainLatitude, histTrail.MainLongitude), Distance.FromKilometers(1)));
+            }
+            else
+            { 
+                var place = locator.GetLocation();
+                if (place == null)
+                    customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromKilometers(1)));
+                else
+                {
+                    customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(place.Latitude, place.Longitude), Distance.FromKilometers(1)));
+                }
+            }
 
             Content = new StackLayout
             {

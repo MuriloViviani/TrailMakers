@@ -9,5 +9,6 @@ namespace TrailMakers.Business.Interface
     public interface IIntent
     {
         void Navigator(string link);
+        void PlaceNavigation(string latitude, string longitude);
     }
 }

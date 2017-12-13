@@ -1,6 +1,7 @@
 ﻿using System;
 using TrailMakers.Business.Interface;
 using TrailMakers.Custom;
+using TrailMakers.Entity;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -60,12 +61,45 @@ namespace TrailMakers.UI.MapView
                 HorizontalOptions = LayoutOptions.Center
             };
 
+            var info = new RaceInfo()
+            {
+                StartTime = DateTime.Now,
+                Poi = new System.Collections.Generic.List<POI>(),
+                TrailPath = new System.Collections.Generic.List<Location>(),
+                Description = "Esta é minha mais nova trilha! =D",
+                Name = "Nova trilha"
+            };
+            var state = false;
             btnBegin = new Button()
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Text = "Iniciar",
                 BackgroundColor = Color.FromHex("#4CAF50")
+            };
+            btnBegin.Clicked += async delegate
+            {
+                state = !state;
+                if (state)
+                {
+                    btnBegin.Text = "Parar";
+                    btnBegin.BackgroundColor = Color.FromHex("#F44336");
+                    Device.StartTimer(TimeSpan.FromMilliseconds(1000), () =>
+                    {
+                        info.Time = info.Time.AddSeconds(1);
+
+                        lblSecond.Text = info.Time.Second.ToString();
+                        lblMinute.Text = info.Time.Minute.ToString();
+                        lblHour.Text = info.Time.Hour.ToString();
+
+                        return state;
+                    });
+                }
+                else
+                {
+                    await Navigation.PushAsync(new RunDetailPage(info));
+                    state = !state;
+                }
             };
 
             pointImage = new Image()
