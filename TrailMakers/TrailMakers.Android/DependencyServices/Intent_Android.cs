@@ -9,6 +9,14 @@ namespace TrailMakers.Droid.DependencyServices
 {
     public class Intent_Android : IIntent
     {
+        public void Call(string tel)
+        {
+            var uri = Android.Net.Uri.Parse("tel:" + tel);
+            var phoneIntent = new Intent(Intent.ActionDial, uri);
+
+            Forms.Context.StartActivity(phoneIntent);
+        }
+
         public void Navigator(string link)
         {
             var uri = Android.Net.Uri.Parse(link);

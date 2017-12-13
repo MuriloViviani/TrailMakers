@@ -36,7 +36,7 @@ namespace TrailMakers.UI.UserPage
 
             if (userExists == false)
             {
-                await DisplayAlert("Hey Hey!", "Parece que você é novo por aqui trilheiro!\n\nÉ importante saber que antes de qualuqer coisa é necessário que seus dados estejam cadastrados aqui para que você consiga usar tudo o uqe o App pode oferecer!", "Whaaat?");
+                await DisplayAlert("Hey Hey!", "Parece que você é novo por aqui trilheiro!\n\nÉ importante saber que antes de qualquer coisa é necessário que seus dados estejam cadastrados aqui para que você consiga usar tudo o uqe o App pode oferecer!", "Whaaat?");
                 await DisplayAlert("Ainda não pegou?", "É simples, para que você possa criar qualquer atalho ou trilha é necessário que um usuário seja cadastrado!", "Conte-me mais");
                 await DisplayAlert("Quase lá!", "Depois que você cadastrar seu usuário nós saberemos quem você é -_-", "Mas e os meus dados?");
                 await DisplayAlert("¬¬", "Não se preocupe com seus dados, não faremos nenhum mal a eles, é apenas para saber que é você mesmo!", "Ahhh");

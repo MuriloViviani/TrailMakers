@@ -10,5 +10,6 @@ namespace TrailMakers.Business.Interface
     {
         void Navigator(string link);
         void PlaceNavigation(string latitude, string longitude);
+        void Call(string tel);
     }
 }

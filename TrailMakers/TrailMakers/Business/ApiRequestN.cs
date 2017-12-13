@@ -105,6 +105,17 @@ namespace TrailMakers.Business
             return list;
         }
 
+        public void SetLastTrail(Historic historic)
+        {
+            fileService.SaveTextAsync("lastTrail.json", JsonConvert.SerializeObject(historic));
+        }
+        public async Task<Historic> GetLastTrail()
+        {
+            var lastTrail = JsonConvert.DeserializeObject<Historic>(await fileService.LoadTextAsync("lastTrail.json"));
+
+            return lastTrail;
+        }
+
         private double[] SetMainPositions(List<Location> positions)
         {
             double[] LongLat = new double[2];

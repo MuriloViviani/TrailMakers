@@ -13,5 +13,7 @@ namespace TrailMakers.Business.Interface
         Task<bool> AddToUserHistoricAsync(Historic trail);
         Task<User> GetUserDataAsync();
         bool SetUserData(User user);
+        Task<Historic> GetLastTrail();
+        void SetLastTrail(Historic historic);
     }
 }

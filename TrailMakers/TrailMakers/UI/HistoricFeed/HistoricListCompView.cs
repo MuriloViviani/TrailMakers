@@ -1,7 +1,7 @@
-﻿using Java.Lang;
-using TrailMakers.Business.Interface;
+﻿using TrailMakers.Business.Interface;
 using TrailMakers.Custom;
 using TrailMakers.Entity;
+using TrailMakers.UI.MapView;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -19,12 +19,12 @@ namespace TrailMakers.UI.HistoricFeed
                 HeightRequest = 200,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HasZoomEnabled = false,
-                HasScrollEnabled = false,
+                HasScrollEnabled = false
             };
             
             foreach (var poi in histTrail.Poi)
             {
-                customMap.PinsCoordinates.Add(new CustomPin()
+                var pin = new CustomPin()
                 {
                     Position = new Position(poi.Latitude, poi.Longitude),
                     Label = poi.Type.ToString(),
@@ -35,7 +35,15 @@ namespace TrailMakers.UI.HistoricFeed
                         Description = poi.Description,
                         Type = poi.Type
                     }
-                });
+                };
+
+                pin.InfoClicked += (sender) =>
+                {
+                    var pinSelected = sender;
+                    Navigation.PushModalAsync(new POIView(pinSelected));
+                };
+
+                customMap.PinsCoordinates.Add(pin);
             }
 
             foreach (var pos in histTrail.TrailPath)

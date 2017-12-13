@@ -9,7 +9,7 @@ namespace TrailMakers.UI.HistoricFeed
 
         public HistoricPage_Copy()
         {
-            Title = "Historico de trilhas";
+            Title = "Histórico de trilhas";
             BackgroundColor = Color.White;
 
             Content = DataAndHelper.HelperItens.Load();
@@ -23,6 +23,7 @@ namespace TrailMakers.UI.HistoricFeed
 
             if (trails != null)
             {
+                trails.Reverse();
                 StackLayout layout = new StackLayout() { Padding = new Thickness(5, 5, 5, 5) };
                 foreach (var trail in trails)
                 {
@@ -30,7 +31,7 @@ namespace TrailMakers.UI.HistoricFeed
                     var gestureRec = new TapGestureRecognizer();
                     gestureRec.Tapped += delegate
                     {
-                        Navigation.PushModalAsync(new HistoricDetailPage(trail));
+                        Navigation.PushAsync(new HistoricDetailPage(trail));
                     };
                     detail.GestureRecognizers.Add(gestureRec);
 

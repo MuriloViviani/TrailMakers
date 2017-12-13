@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Text;
+using TrailMakers.Business;
 using TrailMakers.Business.Interface;
 using TrailMakers.Custom;
 using TrailMakers.Entity;
+using TrailMakers.UI.MapView;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -14,6 +16,9 @@ namespace TrailMakers.UI.HistoricFeed
         Button btnStartRun;
         IIntent intentServices = DependencyService.Get<IIntent>();
         ISaveAndLoad fileServices = DependencyService.Get<ISaveAndLoad>();
+        ILocate locator = DependencyService.Get<ILocate>();
+
+        ApiRequestN apiServices = new ApiRequestN();
 
         public HistoricDetailPage(Historic historic)
         {
@@ -25,15 +30,13 @@ namespace TrailMakers.UI.HistoricFeed
                 IsShowingUser = true,
                 HeightRequest = 200,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                HasZoomEnabled = false,
-                HasScrollEnabled = false,
             };
 
             if (historic.Poi.Count > 0)
             {
                 foreach (var poi in historic.Poi)
                 {
-                    customMap.PinsCoordinates.Add(new CustomPin()
+                    var pin = new CustomPin()
                     {
                         Position = new Position(poi.Latitude, poi.Longitude),
                         Label = poi.Type.ToString(),
@@ -44,7 +47,15 @@ namespace TrailMakers.UI.HistoricFeed
                             Description = poi.Description,
                             Type = poi.Type
                         }
-                    });
+                    };
+
+                    pin.InfoClicked += (sender) =>
+                    {
+                        var pinSelected = sender;
+                        Navigation.PushModalAsync(new POIView(pinSelected));
+                    };
+
+                    customMap.PinsCoordinates.Add(pin);
                 }
             }
 
@@ -56,16 +67,24 @@ namespace TrailMakers.UI.HistoricFeed
 
             btnStartRun = new Button()
             {
-                Text = "Iniciar Corrida"
+                Text = "Iniciar Corrida",
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                TextColor = Color.White,
+                BackgroundColor = Color.FromHex("#4CAF50")
             };
             btnStartRun.Clicked += async delegate 
             {
                 var x = await DisplayAlert("Hey Hey!", "Você esta prestes a ser direcionado para o local de inicio da corrida selecionada\n\nDeseja continuar?", "Yup!", "Nop!");
                 if (x)
                 {
+                    apiServices.SetLastTrail(historic);
+
                     var place = historic.TrailPath[0];
                     await fileServices.SaveTextAsync("activeTrail.json", Newtonsoft.Json.JsonConvert.SerializeObject(historic));
                     intentServices.PlaceNavigation(place.Latitude.ToString(), place.Longitude.ToString());
+
+                    await Navigation.PopToRootAsync();
                 }
             };
 
@@ -112,10 +131,28 @@ namespace TrailMakers.UI.HistoricFeed
                 mapLongitude += item.Longitude;
                 customMap.RouteCoordinates.Add(new Position(item.Latitude, item.Longitude));
             }
-            mapLatitude = mapLatitude / historic.TrailPath.Count;
-            mapLongitude = mapLongitude / historic.TrailPath.Count;
+            if (historic.TrailPath.Count > 0)
+            {
+                mapLatitude = mapLatitude / historic.TrailPath.Count;
+                mapLongitude = mapLongitude / historic.TrailPath.Count;
 
-            customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(mapLatitude, mapLongitude), Distance.FromKilometers(2)));
+                customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(mapLatitude, mapLongitude), Distance.FromKilometers(2)));
+            }
+            else
+            {
+                var place = locator.GetLocation();
+                if (place == null)
+                    customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(0, 0), Distance.FromKilometers(1)));
+                else
+                {
+                    customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(place.Latitude, place.Longitude), Distance.FromKilometers(1)));
+                }
+            }
+
+            var lblInfoTrail = new Label()
+            {
+                Text = historic.Description
+            };
 
             Content = new StackLayout
             {
@@ -131,8 +168,14 @@ namespace TrailMakers.UI.HistoricFeed
                     new StackLayout()
                     {
                         BackgroundColor = Color.White,
-                        VerticalOptions = LayoutOptions.CenterAndExpand,
+                        VerticalOptions = LayoutOptions.Center,
                         HorizontalOptions = LayoutOptions.CenterAndExpand
+                    },
+                    new StackLayout()
+                    {
+                        BackgroundColor = Color.White,
+                        Padding = new Thickness(5,5,5,5),
+                        Children = { lblInfoTrail }
                     },
                     btnStartRun
                 }

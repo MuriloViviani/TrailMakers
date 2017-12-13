@@ -24,6 +24,8 @@ namespace TrailMakers.UI.MapView
             Title = raceInfo.Name;
             BackgroundColor = Color.White;
 
+            var time = DateTime.Now - raceInfo.StartTime;
+
             customMap = new CustomMap
             {
                 IsShowingUser = true,
@@ -37,7 +39,7 @@ namespace TrailMakers.UI.MapView
             {
                 foreach (var poi in raceInfo.Poi)
                 {
-                    customMap.PinsCoordinates.Add(new CustomPin()
+                    var pin = new CustomPin()
                     {
                         Position = new Position(poi.Latitude, poi.Longitude),
                         Label = poi.Type.ToString(),
@@ -48,7 +50,15 @@ namespace TrailMakers.UI.MapView
                             Description = poi.Description,
                             Type = poi.Type
                         }
-                    });
+                    };
+
+                    pin.InfoClicked += (sender) =>
+                    {
+                        var pinSelected = sender;
+                        Navigation.PushModalAsync(new POIView(pinSelected));
+                    };
+
+                    customMap.PinsCoordinates.Add(pin);
                 }
             }
 
@@ -60,7 +70,7 @@ namespace TrailMakers.UI.MapView
                 }
             }
 
-            var lblName = new Label
+            var txtName = new Entry
             {
                 Text = raceInfo.Name,
                 TextColor = Color.White,
@@ -76,23 +86,30 @@ namespace TrailMakers.UI.MapView
                 HorizontalTextAlignment = TextAlignment.Start
             };
 
+            var txtTrailDetail = new Editor()
+            {
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Text = "Fale mais sobre sua trilha"
+            };
+
             StringBuilder sb = new StringBuilder();
-            if (!System.String.IsNullOrEmpty(raceInfo.StartTime.ToString()))
+            if (!String.IsNullOrEmpty(raceInfo.StartTime.ToString()))
             {
                 sb.Append("Ultima vez visitada\n\t");
                 sb.Append(raceInfo.StartTime.ToString("dd/MM/yyyy"));
                 sb.Append("\n");
             }
-            if (!System.String.IsNullOrEmpty(raceInfo.Distance.ToString()))
+            if (!String.IsNullOrEmpty(raceInfo.Distance.ToString()))
             {
                 sb.Append("Distancia Total\n\t");
                 sb.Append(raceInfo.Distance);
                 sb.Append("\n");
             }
-            if (!System.String.IsNullOrEmpty(raceInfo.StartTime.ToString("dd/MM/yyyy")))
+            if (!String.IsNullOrEmpty(time.ToString()))
             {
                 sb.Append("Tempo decorrido\n\t");
-                sb.Append(raceInfo.StartTime.ToString("dd/MM/yyyy"));
+                sb.Append(time.ToString());
             }
             lblInfo.Text = sb.ToString();
 
@@ -120,56 +137,82 @@ namespace TrailMakers.UI.MapView
                     customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(place.Latitude, place.Longitude), Distance.FromKilometers(1)));
                     mapLatitude = place.Latitude;
                     mapLongitude = place.Longitude;
+                    raceInfo.TrailPath.Add(new Location(mapLatitude, mapLongitude));
+                    raceInfo.TrailPath.Add(new Location(mapLatitude, mapLongitude));
+                    raceInfo.Poi.Add(new POI()
+                    {
+                        Type = DataAndHelper.Data.PinType.Begin,
+                        Latitude = mapLatitude,
+                        Longitude = mapLongitude
+                    });
+                    raceInfo.Poi.Add(new POI()
+                    {
+                        Type = DataAndHelper.Data.PinType.End,
+                        Latitude = mapLatitude,
+                        Longitude = mapLongitude
+                    });
                 }
             }
 
             btnStopRun = new Button()
             {
                 Text = "Finalizar Corrida",
-                BackgroundColor = Color.FromHex("#F44336")
+                BackgroundColor = Color.FromHex("#F44336"),
+                TextColor = Color.White
             };
             btnStopRun.Clicked += async delegate
             {
                 var x = await DisplayAlert("Hey Hey!", "Tem Certeza que quer finalizar esta corrida?", "Yup!", "Nop!");
                 if (x)
                 {
-                    await apiServices.AddToUserHistoricAsync(new Historic()
+                    var hist = new Historic()
                     {
-                        Name = lblName.Text,
+                        Name = txtName.Text,
                         Date = raceInfo.StartTime.ToString("dd/MM/yyyy"),
                         Description = lblInfo.Text,
                         Distance = raceInfo.Distance.ToString(),
                         Poi = raceInfo.Poi,
-                        TimeSpent = "", // TODO: Add the time calc
+                        TimeSpent = time.ToString(),
                         TrailPath = raceInfo.TrailPath,
                         MainLatitude = mapLatitude,
                         MainLongitude = mapLongitude
-                    });
+                    };
+
+                    if (!txtTrailDetail.Text.Equals("Fale mais sobre sua trilha"))
+                    {
+                        hist.Description = txtTrailDetail.Text;
+                    }
+
+                    await apiServices.AddToUserHistoricAsync(hist);
+                    apiServices.SetLastTrail(new Historic() { Name = null });
 
                     await Navigation.PopToRootAsync();
                 }
             };
-
-            Content = new StackLayout
+            
+            var layout = new StackLayout()
             {
                 Spacing = 0,
                 Children = {
                     customMap,
                     new StackLayout()
                     {
-                        BackgroundColor = Color.FromHex("#2196F3"),
+                        BackgroundColor = Color.FromHex("#3aa8ff"),
                         Padding = new Thickness(5,5,5,5),
-                        Children = { lblName, lblInfo }
+                        Children = { txtName, lblInfo }
                     },
                     new StackLayout()
                     {
                         BackgroundColor = Color.White,
-                        VerticalOptions = LayoutOptions.CenterAndExpand,
+                        VerticalOptions = LayoutOptions.Center,
                         HorizontalOptions = LayoutOptions.CenterAndExpand
                     },
+                    txtTrailDetail,
                     btnStopRun
                 }
             };
+
+            Content = new ScrollView { Content = layout };
         }
     }
 }

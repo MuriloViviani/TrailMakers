@@ -1,4 +1,5 @@
 ﻿using System;
+using TrailMakers.Business;
 using TrailMakers.Business.Interface;
 using TrailMakers.Custom;
 using TrailMakers.Entity;
@@ -10,19 +11,25 @@ namespace TrailMakers.UI.MapView
     public class RunningMap : ContentPage
     {
         CustomMap customMap;
-        Button btnBegin;
-        Image pointImage;
+        Button btnBegin, btnDanger;
         Label lblDistace;
         Label lblHour, lblMinute, lblSecond;
         DateTime time;
 
         private ILocate locator = DependencyService.Get<ILocate>();
+        private IIntent intents = DependencyService.Get<IIntent>();
+        private ApiRequestN apiServices = new ApiRequestN();
 
         public RunningMap()
         {
             Title = "Nova Corrida";
             BackgroundColor = Color.White;
 
+            CreateLayout();
+        }
+
+        private async void CreateLayout()
+        {
             customMap = new CustomMap
             {
                 IsShowingUser = true,
@@ -37,6 +44,41 @@ namespace TrailMakers.UI.MapView
             else
                 customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(place.Latitude, place.Longitude), Distance.FromKilometers(1)));
 
+            var lastTrail = await apiServices.GetLastTrail();
+            if (lastTrail != null)
+            {
+                if (!String.IsNullOrEmpty(lastTrail.Name))
+                {
+                    foreach (var poi in lastTrail.Poi)
+                    {
+                        var pin = new CustomPin()
+                        {
+                            Position = new Position(poi.Latitude, poi.Longitude),
+                            Label = poi.Type.ToString(),
+                            Id = poi.Type,
+                            IconUrl = poi.IconUlr,
+                            Poi = new POI()
+                            {
+                                Description = poi.Description,
+                                Type = poi.Type
+                            }
+                        };
+
+                        pin.InfoClicked += (sender) =>
+                        {
+                            var pinSelected = sender;
+                            Navigation.PushModalAsync(new POIView(pinSelected));
+                        };
+
+                        customMap.PinsCoordinates.Add(pin);
+                    }
+
+                    foreach (var pos in lastTrail.TrailPath)
+                    {
+                        customMap.RouteCoordinates.Add(new Position(pos.Latitude, pos.Longitude));
+                    }
+                }
+            }
 
             lblHour = new Label()
             {
@@ -75,7 +117,8 @@ namespace TrailMakers.UI.MapView
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Text = "Iniciar",
-                BackgroundColor = Color.FromHex("#4CAF50")
+                BackgroundColor = Color.FromHex("#4CAF50"),
+                TextColor = Color.White
             };
             btnBegin.Clicked += async delegate
             {
@@ -102,11 +145,18 @@ namespace TrailMakers.UI.MapView
                 }
             };
 
-            pointImage = new Image()
+            btnDanger = new Button()
             {
-                Source = ImageSource.FromUri(new Uri(DataAndHelper.Data.DANGER_MAP_ICON)),
+                Text = "SOCORRO!",
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                TextColor = Color.White,
+                BackgroundColor = Color.FromHex("#F44336")
+            };
+            btnDanger.Clicked += async delegate
+            {
+                await DisplayAlert("Aguente Firme!", "Não se preocupe!\nOs trilheiros mais próximos a você serão alertados!", "OKAY!");
+                intents.Call("192");
             };
 
             Content = new StackLayout()
@@ -167,7 +217,7 @@ namespace TrailMakers.UI.MapView
                                             btnBegin
                                         }
                                     },
-                                    pointImage
+                                    btnDanger
                                 }
                             }
                         }

@@ -87,7 +87,7 @@ namespace TrailMakers.UI
             optionsList.Add(itemAux);
             //------------------------------------------------------------------
             // Carrega Historico para demo
-            menuInfo = new MenuOption()
+            /*menuInfo = new MenuOption()
             {
                 Name = "Apresentação",
                 BkgColor = "#FFB74D",
@@ -108,7 +108,7 @@ namespace TrailMakers.UI
                 await DisplayAlert("YEY!", "Deu certo!", "YUPI");
             };
             itemAux.GestureRecognizers.Add(ClickListenerAux);
-            optionsList.Add(itemAux);
+            optionsList.Add(itemAux);*/
             //------------------------------------------------------------------
 
             var mainLayout = new StackLayout();

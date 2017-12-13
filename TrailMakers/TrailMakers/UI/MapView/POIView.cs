@@ -17,6 +17,7 @@ namespace TrailMakers.UI.MapView
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 BackgroundColor = Color.FromHex("#4CAF50"),
+                TextColor = Color.White,
                 Text = "Ok! Quero voltar!"
             };
             btnBack.Clicked += delegate
@@ -42,7 +43,7 @@ namespace TrailMakers.UI.MapView
                                 {
                                     new Image ()
                                     {
-                                        Source = ImageSource.FromUri(new Uri(fixedPin.IconUrl))
+                                        Source = ImageSource.FromUri(new Uri(pin.IconUrl))
                                     },
                                     new Label()
                                     {
